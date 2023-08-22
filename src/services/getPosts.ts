@@ -9,7 +9,8 @@ export const getAllPosts = async () => {
 };
 
 export const getPostById = async (id: string) => {
-  const host = process?.env.NODE_ENV === 'development' ? 'localhost:3000' : '';
+  const host =
+    process?.env.NODE_ENV === 'development' ? 'localhost:3000' : 'nextjs-blog-app-delta.vercel.app';
   const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
   // const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
   const response = await fetch(`${protocol}://${host}/api/posts/${id}`);
