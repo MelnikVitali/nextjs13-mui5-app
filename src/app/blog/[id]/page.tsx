@@ -19,6 +19,8 @@ export const generateMetadata = async ({ params: { id } }: Props): Promise<Metad
 const BlogPost: FC<Props> = async ({ params: { id } }) => {
   const post = await getPostById(id);
 
+  console.log(post);
+
   return (
     <>
       <h1>{post.title}</h1>

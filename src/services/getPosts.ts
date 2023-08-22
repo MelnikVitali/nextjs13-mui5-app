@@ -9,7 +9,10 @@ export const getAllPosts = async () => {
 };
 
 export const getPostById = async (id: string) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  const host = process?.env.NODE_ENV === 'development' ? 'localhost:3000' : '';
+  const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
+  // const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  const response = await fetch(`${protocol}://${host}/api/posts/${id}`);
 
   if (!response.ok) throw new Error('Unable to fetch post.');
 
@@ -20,9 +23,11 @@ export const getPostsBySearch = async (search: string) => {
   let url;
 
   if (search.trim() === '') {
-    url = 'https://jsonplaceholder.typicode.com/posts';
+    // url = 'https://jsonplaceholder.typicode.com/posts';
+    url = '/api/posts';
   } else {
-    url = `https://jsonplaceholder.typicode.com/posts?q=${search}`;
+    // url = `https://jsonplaceholder.typicode.com/posts?q=${search}`;
+    url = `/api/posts?q=${search}`;
   }
   // Add some delay here.
   const [response] = await Promise.all([
