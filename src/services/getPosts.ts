@@ -1,5 +1,5 @@
 export const getAllPosts = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+  const response = await fetch('https://dummyjson.com/posts?limit=200', {
     next: { revalidate: 3600 },
   });
 
@@ -9,11 +9,15 @@ export const getAllPosts = async () => {
 };
 
 export const getPostById = async (id: string) => {
-  const host =
-    process?.env.NODE_ENV === 'development' ? 'localhost:3000' : 'nextjs-blog-app-delta.vercel.app';
-  const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
-  // const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-  const response = await fetch(`${protocol}://${host}/api/posts/${id}`);
+  // const host =
+  // process?.env.NODE_ENV === 'development' ? 'localhost:3000' : 'nextjs-blog-app-delta.vercel.app';
+  // const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
+  // const response = await fetch(`${protocol}://${host}/api/posts/${id}`, {
+  // next: { revalidate: 3600 },
+  // });
+  const response = await fetch(`https://dummyjson.com/posts/${id}`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!response.ok) throw new Error('Unable to fetch post.');
 
@@ -24,11 +28,11 @@ export const getPostsBySearch = async (search: string) => {
   let url;
 
   if (search.trim() === '') {
-    // url = 'https://jsonplaceholder.typicode.com/posts';
-    url = '/api/posts';
+    url = 'https://dummyjson.com/posts?limit=200';
+    // url = '/api/posts';
   } else {
-    // url = `https://jsonplaceholder.typicode.com/posts?q=${search}`;
-    url = `/api/posts?q=${search}`;
+    url = `https://dummyjson.com/posts/search?q=${search}`;
+    // url = `/api/posts?q=${search}`;
   }
   // Add some delay here.
   const [response] = await Promise.all([
@@ -41,4 +45,24 @@ export const getPostsBySearch = async (search: string) => {
   if (!response.ok) throw new Error('Unable to fetch posts.');
 
   return await response.json();
+};
+
+export const getPostsUsers = async () => {
+  const response = await fetch(`https://dummyjson.com/users?limit=200`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) throw new Error('Unable to fetch post.');
+
+  return response.json();
+};
+
+export const getPostUserById = async (id: string) => {
+  const response = await fetch(`https://dummyjson.com/users/${id}`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) throw new Error('Unable to fetch post.');
+
+  return response.json();
 };

@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { Providers } from '@/components/Providers';
+import ThemeRegistry from '@/ThemeRegistry/ThemeRegistry';
+import { Container, CssBaseline, Pagination } from '@mui/material';
 
 const roboto = Roboto({
   weight: '400',
@@ -14,20 +17,22 @@ export const metadata: Metadata = {
   description: 'Generated next app',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       {/* console warning blocking */}
       <body suppressHydrationWarning={true} className={roboto.className}>
-        <Header />
-        <main className="container">{children}</main>
-        <Footer />
+        <ThemeRegistry>
+          <CssBaseline />
+          <Providers>
+            <Header />
+            <Container sx={{ paddingTop: '5rem', minHeight: 'calc(100vh - 80px)' }}>
+              {children}
+            </Container>
+            <Footer />
+          </Providers>
+        </ThemeRegistry>
       </body>
-    </html >
+    </html>
   );
 }
-

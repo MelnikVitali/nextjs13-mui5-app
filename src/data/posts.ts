@@ -8,6 +8,8 @@ export const posts = [
     userId: 9,
     tags: ['history', 'american', 'crime'],
     reactions: 2,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ export const posts = [
     userId: 13,
     tags: ['french', 'fiction', 'english'],
     reactions: 2,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 3,
@@ -24,6 +28,8 @@ export const posts = [
     userId: 32,
     tags: ['magical', 'history', 'french'],
     reactions: 5,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 4,
@@ -32,6 +38,8 @@ export const posts = [
     userId: 12,
     tags: ['mystery', 'english', 'american'],
     reactions: 1,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 5,
@@ -40,6 +48,8 @@ export const posts = [
     userId: 41,
     tags: ['crime', 'mystery', 'love'],
     reactions: 2,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 6,
@@ -48,6 +58,8 @@ export const posts = [
     userId: 47,
     tags: ['english', 'classic', 'american'],
     reactions: 3,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 7,
@@ -56,6 +68,8 @@ export const posts = [
     userId: 12,
     tags: ['magical', 'crime'],
     reactions: 0,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 8,
@@ -64,6 +78,8 @@ export const posts = [
     userId: 31,
     tags: ['american', 'english'],
     reactions: 9,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 9,
@@ -72,6 +88,8 @@ export const posts = [
     userId: 42,
     tags: ['american', 'history', 'magical'],
     reactions: 2,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 10,
@@ -80,6 +98,8 @@ export const posts = [
     userId: 1,
     tags: ['fiction', 'magical', 'history'],
     reactions: 4,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 11,
@@ -88,6 +108,8 @@ export const posts = [
     userId: 25,
     tags: ['mystery', 'american', 'history'],
     reactions: 5,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 12,
@@ -96,6 +118,8 @@ export const posts = [
     userId: 26,
     tags: ['love', 'english'],
     reactions: 7,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 13,
@@ -104,6 +128,8 @@ export const posts = [
     userId: 44,
     tags: ['mystery', 'classic', 'french'],
     reactions: 0,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 14,
@@ -112,6 +138,8 @@ export const posts = [
     userId: 1,
     tags: ['mystery', 'english', 'love'],
     reactions: 0,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 15,
@@ -120,6 +148,8 @@ export const posts = [
     userId: 15,
     tags: ['fiction', 'history', 'crime'],
     reactions: 1,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 16,
@@ -128,6 +158,8 @@ export const posts = [
     userId: 31,
     tags: ['magical', 'french', 'american'],
     reactions: 5,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 17,
@@ -136,6 +168,8 @@ export const posts = [
     userId: 5,
     tags: ['french', 'magical', 'english'],
     reactions: 0,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 18,
@@ -144,6 +178,8 @@ export const posts = [
     userId: 28,
     tags: ['history', 'french', 'love'],
     reactions: 3,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 19,
@@ -152,6 +188,8 @@ export const posts = [
     userId: 46,
     tags: ['fiction', 'crime', 'magical'],
     reactions: 8,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 20,
@@ -160,6 +198,8 @@ export const posts = [
     userId: 38,
     tags: ['french', 'classic'],
     reactions: 9,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 21,
@@ -168,6 +208,8 @@ export const posts = [
     userId: 37,
     tags: ['french', 'american'],
     reactions: 8,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 22,
@@ -176,6 +218,8 @@ export const posts = [
     userId: 30,
     tags: ['classic', 'love', 'history'],
     reactions: 6,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 23,
@@ -184,6 +228,8 @@ export const posts = [
     userId: 2,
     tags: ['crime', 'english'],
     reactions: 4,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 24,
@@ -192,6 +238,8 @@ export const posts = [
     userId: 34,
     tags: ['crime', 'american', 'love'],
     reactions: 2,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 25,
@@ -200,6 +248,8 @@ export const posts = [
     userId: 27,
     tags: ['fiction', 'history', 'french'],
     reactions: 3,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 26,
@@ -208,6 +258,8 @@ export const posts = [
     userId: 27,
     tags: ['french', 'mystery', 'crime'],
     reactions: 7,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 27,
@@ -216,6 +268,8 @@ export const posts = [
     userId: 17,
     tags: ['mystery', 'classic', 'love'],
     reactions: 4,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 28,
@@ -224,6 +278,8 @@ export const posts = [
     userId: 22,
     tags: ['crime', 'love'],
     reactions: 2,
+    author: 'Kent Dodds',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 29,
@@ -232,6 +288,8 @@ export const posts = [
     userId: 38,
     tags: ['mystery', 'american'],
     reactions: 6,
+    author: 'Tim Neutkens',
+    imageUrl: 'https://source.unsplash.com/random',
   },
   {
     id: 30,
@@ -240,5 +298,7 @@ export const posts = [
     userId: 2,
     tags: ['american', 'love', 'fiction'],
     reactions: 0,
+    author: 'Jed Watson',
+    imageUrl: 'https://source.unsplash.com/random',
   },
 ];
