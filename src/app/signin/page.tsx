@@ -1,17 +1,8 @@
-import GitHubButton from '@/components/GitHubButton';
-import GoogleButton from '@/components/GoogleButton';
-import SignInForm from '@/components/SignInForm';
+import SignInForm from '@/components/SignInForm/SignInForm';
+import { FC } from 'react';
 
-const Signin = () => {
-  return (
-    <div className='stack'>
-      <h1>SignIn</h1>
-      <GoogleButton />
-      <GitHubButton />
-      <div>or</div>
-      <SignInForm />
-    </div>
-  );
+const Signin: FC = () => {
+  return <SignInForm />;
 };
 
 export default Signin;

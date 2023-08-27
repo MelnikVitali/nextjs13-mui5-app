@@ -16,9 +16,10 @@ export const users = [
   },
   {
     id: '3',
-    email: 'any@ukr.net',
+    email: 'example@dev.com',
     name: 'Just a Guest',
     password: '123456',
+    image: 'https://mui.com/static/images/avatar/2.jpg',
     role: 'guest',
   },
 ];
