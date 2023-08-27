@@ -3,6 +3,7 @@ import { Avatar } from '@mui/material';
 import Image from 'next/image';
 import bestTeams from '@/images/bestTeams.jpg';
 import Link from 'next/link';
+import { blurMyTeam } from '@/data/blurMyTeam';
 
 const Team = () => {
   const reviews = [
@@ -70,6 +71,8 @@ const Team = () => {
           <Grid item xs={12} md={5} sx={{ marginLeft: '0px', paddingTop: '0 !important' }}>
             <Image
               src={bestTeams}
+              blurDataURL={blurMyTeam}
+              placeholder='blur'
               alt='My Team'
               width={640}
               height={300}

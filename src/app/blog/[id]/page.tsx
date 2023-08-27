@@ -6,7 +6,7 @@ import styles from './page.module.css';
 import Link from 'next/link';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { blurDataURL } from '@/data/blurDataURL';
+import { blurPost } from '@/data/blurPost';
 import { stringAvatar } from '@/utils/stringAvatar';
 
 type Props = {
@@ -36,7 +36,7 @@ const BlogPost: FC<Props> = async ({ params: { id } }) => {
           priority={true}
           width={800}
           height={600}
-          blurDataURL={blurDataURL}
+          blurDataURL={blurPost}
           placeholder='blur'
           style={{
             width: '100%',

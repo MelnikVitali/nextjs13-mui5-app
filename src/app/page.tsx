@@ -1,4 +1,4 @@
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Button, Card, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
 export default function Home() {
@@ -7,14 +7,25 @@ export default function Home() {
       <Box component='div' className='main-home'>
         <h1>
           Welcome to{' '}
-          <a href='https://nextjs.org' className='code'>
-            Next.js!
+          <a href='https://nextjs.org/docs' target='_blank' className='code'>
+            Next.js13
+          </a>
+          &nbsp;and&nbsp;
+          <a href='https://mui.com/material-ui/getting-started/' target='_blank' className='code'>
+            MUI5
           </a>
         </h1>
 
-        <Grid container spacing={1} sx={{ flexWrap: 'wrap', maxWidth: '800px', mt: 5 }}>
+        <Typography paragraph className='description'>
+          Get started by editing{' '}
+          <Button disabled sx={{ textTransform: 'lowercase', fontSize: '1rem', mt: '-2px' }}>
+            src/app/layout.tsx
+          </Button>
+        </Typography>
+
+        <Grid container spacing={1} sx={{ flexWrap: 'wrap', maxWidth: '800px', mt: 2 }}>
           <Grid container item sm={6}>
-            <a href='https://nextjs.org/learn'>
+            <a href='https://nextjs.org/learn' target='_blank'>
               <Card className='card-home'>
                 <Typography variant='h5' className='card-home-text'>
                   Documentation &rarr;
@@ -27,7 +38,7 @@ export default function Home() {
           </Grid>
 
           <Grid container item sm={6}>
-            <a href='https://nextjs.org/learn'>
+            <a href='https://nextjs.org/learn' target='_blank'>
               <Card className='card-home'>
                 <Typography variant='h5' className='card-home-text'>
                   Learn &rarr;
@@ -39,7 +50,7 @@ export default function Home() {
             </a>
           </Grid>
           <Grid container item sm={6}>
-            <a href='https://github.com/vercel/next.js/tree/master/examples'>
+            <a href='https://github.com/vercel/next.js/tree/master/examples' target='_blank'>
               <Card className='card-home'>
                 <Typography variant='h5' className='card-home-text'>
                   Examples &rarr;
@@ -51,7 +62,10 @@ export default function Home() {
             </a>
           </Grid>
           <Grid container item sm={6}>
-            <a href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'>
+            <a
+              href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+              target='_blank'
+            >
               <Card className='card-home'>
                 <Typography variant='h5' className='card-home-text'>
                   Deploy &rarr;

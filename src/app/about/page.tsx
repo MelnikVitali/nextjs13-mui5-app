@@ -4,6 +4,7 @@ import myteam from '@/images/myteam.jpg';
 import { Grid, Typography, Button, Box } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import { blurMyTeam } from '@/data/blurMyTeam';
 
 export const metadata: Metadata = {
   title: 'About | Next App',
@@ -66,6 +67,8 @@ const About = () => {
           <Grid item xs={12} md={5} sx={{ paddingTop: '0 !important' }}>
             <Image
               src={myteam}
+              blurDataURL={blurMyTeam}
+              placeholder='blur'
               alt='My Team'
               width={640}
               height={300}

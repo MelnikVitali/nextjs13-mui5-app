@@ -1,5 +1,4 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState, type FC } from 'react';
@@ -10,10 +9,7 @@ import {
   Typography,
   Stack,
   Link as MuiLink,
-  FormControlLabel,
-  Checkbox,
   TextField,
-  FormHelperText,
   InputAdornment,
   IconButton,
 } from '@mui/material';
@@ -23,34 +19,50 @@ import Link from 'next/link';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import FormInput from '@/components/FormInput';
 import SocialLoginButtons from '@/components/SocialLoginButtons';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
 
+interface IShowPassword {
+  password: boolean;
+  confirmPassword: boolean;
+}
+
 interface IFormInputs {
+  name: string;
   email: string;
   password: string;
+  confirmPassword: string;
   isTrustDevice?: boolean;
 }
 
 const schema = yup.object().shape({
+  name: yup.string().required('Please enter your name').max(70),
   email: yup
     .string()
     .email('Please enter a valid email address')
-    .required('Please enter your email.'),
+    .required('Please enter your email'),
   password: yup
     .string()
     .required('Please enter your password.')
-    .min(6, 'Password is too short!')
-    .max(40, 'Password is too long!'),
+    .min(6, 'Password must be more than 6 characters!')
+    .max(32, 'Password must be less than 32 characters!'),
+  confirmPassword: yup
+    .string()
+    .required('Please re-type your password')
+    // use oneOf to match one of the values inside the array.
+    // use "ref" to get the value of password.
+    .oneOf([yup.ref('password')], 'Passwords does not match'),
   isTrustDevice: yup.boolean().default(false),
 });
 
-const SignInForm: FC = () => {
+const SignUnForm: FC = () => {
   const router = useRouter();
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<IShowPassword>({
+    password: false,
+    confirmPassword: false,
+  });
 
   const {
     register,
@@ -62,25 +74,34 @@ const SignInForm: FC = () => {
     resolver: yupResolver<IFormInputs>(schema),
   });
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = (name: keyof IShowPassword) => {
+    if (name) {
+      setShowPassword((prev) => {
+        return {
+          ...prev,
+          [name]: !prev[name],
+        };
+      });
+    }
+  };
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    const res = await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      isTrustDevice: data.isTrustDevice,
-      redirect: false,
-    });
-
-    if (res && !res.error) {
-      router.push('/profile');
-    } else {
-      console.log(res);
-    }
+    console.log('Submit data', data);
+    // const res = await signUp('credentials', {
+    //   name: data.name,
+    //   email: data.email,
+    //   password: data.password,
+    //   redirect: false,
+    // });
+    // if (res && !res.error) {
+    //   router.push('/profile');
+    // } else {
+    //   console.log(res);
+    // }
   };
 
   return (
@@ -99,7 +120,7 @@ const SignInForm: FC = () => {
             container
             sx={{
               boxShadow: { sm: '0 0 5px #ddd' },
-              py: '8rem',
+              pt: '4rem',
               px: '1rem',
             }}
           >
@@ -113,6 +134,18 @@ const SignInForm: FC = () => {
                 marginInline: 'auto',
               }}
             >
+              <Typography
+                variant='h4'
+                component='h1'
+                sx={{
+                  textAlign: 'center',
+                  width: '100%',
+                  mb: '',
+                  pb: { sm: '3rem' },
+                }}
+              >
+                Welcome To Loop True!
+              </Typography>
               <Grid item xs={12} sm={6} sx={{ borderRight: { sm: '1px solid #ddd' } }}>
                 <Box
                   display='flex'
@@ -123,23 +156,42 @@ const SignInForm: FC = () => {
                   sx={{ paddingRight: { sm: '3rem' } }}
                   onSubmit={handleSubmit(onSubmit)}
                 >
-                  <Typography
-                    variant='h6'
-                    component='h1'
-                    sx={{ textAlign: 'center', mb: '1.5rem' }}
-                  >
-                    Log into your account
+                  <Typography variant='h6' component='h1' sx={{ textAlign: 'center', mb: '1rem' }}>
+                    Create new your account
                   </Typography>
+
+                  <Controller
+                    name='name'
+                    control={control}
+                    defaultValue=''
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        type='text'
+                        label='Name'
+                        variant='outlined'
+                        required
+                        focused
+                        error={!!errors.name}
+                        helperText={errors.name ? errors.name?.message : ''}
+                        fullWidth
+                        margin='dense'
+                        sx={styles.formInput}
+                      />
+                    )}
+                  />
 
                   <Controller
                     name='email'
                     control={control}
-                    defaultValue='example@dev.com'
+                    defaultValue=''
                     render={({ field }) => (
                       <TextField
                         {...field}
                         label='Email'
                         variant='outlined'
+                        required
+                        focused
                         error={!!errors.email}
                         helperText={errors.email ? errors.email?.message : ''}
                         fullWidth
@@ -156,9 +208,11 @@ const SignInForm: FC = () => {
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        type={showPassword ? 'text' : 'password'}
+                        type={showPassword.password ? 'text' : 'password'}
                         label='Password'
                         variant='outlined'
+                        required
+                        focused
                         error={!!errors.password}
                         helperText={errors.password ? errors.password?.message : ''}
                         fullWidth
@@ -169,11 +223,11 @@ const SignInForm: FC = () => {
                             <InputAdornment position='end'>
                               <IconButton
                                 aria-label='toggle password visibility'
-                                onClick={handleClickShowPassword}
+                                onClick={() => handleClickShowPassword('password')}
                                 onMouseDown={handleMouseDownPassword}
                                 edge='end'
                               >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                {showPassword.password ? <VisibilityOff /> : <Visibility />}
                               </IconButton>
                             </InputAdornment>
                           ),
@@ -181,26 +235,39 @@ const SignInForm: FC = () => {
                       />
                     )}
                   />
+
                   <Controller
-                    name='isTrustDevice'
+                    name='confirmPassword'
                     control={control}
+                    defaultValue=''
                     render={({ field }) => (
-                      <>
-                        <FormControlLabel
-                          control={<Checkbox {...field} size='small' />}
-                          sx={{
-                            '& .MuiFormControlLabel-label': {
-                              fontSize: '0.8rem',
-                              fontWeight: 400,
-                              color: '#5e5b5d',
-                            },
-                          }}
-                          label='Trust this device'
-                        />
-                        {errors.isTrustDevice && (
-                          <FormHelperText error>{errors.isTrustDevice.message}</FormHelperText>
-                        )}
-                      </>
+                      <TextField
+                        {...field}
+                        type={showPassword.confirmPassword ? 'text' : 'password'}
+                        label='Confirm Password'
+                        variant='outlined'
+                        error={!!errors.confirmPassword}
+                        required
+                        focused
+                        helperText={errors.confirmPassword ? errors.confirmPassword?.message : ''}
+                        fullWidth
+                        margin='dense'
+                        sx={styles.formInput}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position='end'>
+                              <IconButton
+                                aria-label='toggle password visibility'
+                                onClick={() => handleClickShowPassword('confirmPassword')}
+                                onMouseDown={handleMouseDownPassword}
+                                edge='end'
+                              >
+                                {showPassword.confirmPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
                     )}
                   />
 
@@ -215,7 +282,7 @@ const SignInForm: FC = () => {
                       marginInline: 'auto',
                     }}
                   >
-                    Login
+                    Sign Up
                   </LoadingButton>
                 </Box>
               </Grid>
@@ -229,20 +296,19 @@ const SignInForm: FC = () => {
                     textAlign: 'center',
                   }}
                 >
-                  Log in with another provider:
+                  Sign up using another provider:
                 </Typography>
                 <SocialLoginButtons />
               </Grid>
             </Grid>
-
             <Grid container justifyContent='center'>
               <Stack sx={{ mt: '3rem', textAlign: 'center' }}>
                 <Typography sx={{ fontSize: '0.9rem', mb: '1rem' }}>
-                  Need an account?{' '}
+                  Already have an account?{' '}
                   <MuiLink
                     component={Link}
                     prefetch={false}
-                    href='/signup'
+                    href='/signin'
                     sx={{
                       textDecoration: 'none',
                       color: '#3683dc',
@@ -252,25 +318,7 @@ const SignInForm: FC = () => {
                       },
                     }}
                   >
-                    Sign up here
-                  </MuiLink>
-                </Typography>
-                <Typography sx={{ fontSize: '0.9rem' }}>
-                  Forgot your{' '}
-                  <MuiLink
-                    component={Link}
-                    prefetch={false}
-                    href='/forgotPassword'
-                    sx={{
-                      textDecoration: 'none',
-                      color: '#3683dc',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                        color: '#5ea1b6',
-                      },
-                    }}
-                  >
-                    password?
+                    Login
                   </MuiLink>
                 </Typography>
               </Stack>
@@ -282,4 +330,10 @@ const SignInForm: FC = () => {
   );
 };
 
-export default SignInForm;
+export default SignUnForm;
+function signUp(
+  arg0: string,
+  arg1: { email: string; password: string; isTrustDevice: boolean | undefined; redirect: boolean },
+) {
+  throw new Error('Function not implemented.');
+}

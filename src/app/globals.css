@@ -26,13 +26,16 @@ body {
 }
 
 .code {
-  color: #0070f3;
+  color: rgb(25, 118, 210);
+}
+
+.code:hover {
+  text-decoration: underline;
 }
 
 .card-home {
   margin: 1rem;
-  padding: 1.5rem;
-  font-size: '1.5rem';
+  padding: 2rem;
   text-align: left;
   border: 1px solid #eaeaea;
   border-radius: 10px;
@@ -41,13 +44,13 @@ body {
 }
 
 .card-home:hover {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: rgb(25, 118, 210);
+  border-color: rgb(25, 118, 210);
 }
 
 .card-home-text {
-  font-size: 1.5rem;
-  margin: 0 0 1.2rem;
+  font-size: 2rem;
+  margin: 0 0 1.6rem;
   text-align: left;
   font-weight: 500;
 }
@@ -56,6 +59,7 @@ home .card header {
   background-color: var(--color-bg);
   padding: 2rem 0;
   text-align: center;
+
 }
 
 header>a {
@@ -191,7 +195,7 @@ input[type="search"]:focus-visible {
 
 .vercel-footer {
   text-align: center;
-  margin: 180px 0 0;
+  margin: 100px 0 0;
   display: flex;
   flex: 1;
   justify-content: center;
