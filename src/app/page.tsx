@@ -8,7 +8,7 @@ export default function Home() {
         <h1>
           Welcome to{' '}
           <a href='https://nextjs.org/docs' target='_blank' className='code'>
-            Next.js13
+            Next.js 13
           </a>
           &nbsp;and&nbsp;
           <a href='https://mui.com/material-ui/getting-started/' target='_blank' className='code'>
@@ -91,7 +91,7 @@ export default function Home() {
               alt='Vercel Logo'
               width={72}
               height={16}
-              style={{ paddingTop: '1px' }}
+              style={{ width: '72px', height: '16px', marginBottom: '-3px' }}
             />
           </span>
         </a>

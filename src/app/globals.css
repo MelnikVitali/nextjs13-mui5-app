@@ -184,15 +184,6 @@ input[type="search"]:focus-visible {
   gap: 1rem;
 }
 
-.footer {
-  text-align: center;
-  margin: 50px 0 0;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-
 .vercel-footer {
   text-align: center;
   margin: 100px 0 0;

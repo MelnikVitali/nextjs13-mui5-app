@@ -32,7 +32,15 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1, display: { sm: 'block' } }}>
+          <Typography
+            variant='h6'
+            component='div'
+            sx={{
+              flexGrow: 1,
+              display: { sm: 'block' },
+              fontSize: { xs: '1rem', sm: '1.25rem' },
+            }}
+          >
             Blog Next.js 13
           </Typography>
 

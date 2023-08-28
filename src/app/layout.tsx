@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import { Providers } from '@/components/Providers';
 import ThemeRegistry from '@/ThemeRegistry/ThemeRegistry';
 import { StyledEngineProvider } from '@mui/material/styles';
-import { Container, CssBaseline, Pagination } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 
 const roboto = Roboto({
   weight: '400',
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CssBaseline />
             <Providers>
               <Header />
-              <Container sx={{ paddingTop: '5rem', minHeight: 'calc(100vh - 80px)' }}>
+              <Container sx={{ paddingTop: '5rem', minHeight: 'calc(100vh - 110px)' }}>
                 {children}
               </Container>
               <Footer />

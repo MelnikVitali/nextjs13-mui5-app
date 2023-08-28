@@ -34,11 +34,11 @@ const Navigation: React.FC<NavigationProps> = ({
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant='h6' sx={{ my: 2 }}>
-        MUI
+      <Typography variant='h6' sx={{ my: 2, marginTop: 10 }}>
+        Blog Next.js 13
       </Typography>
       <Divider />
-      <List>
+      <List sx={{ marginLeft: 0 }}>
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
@@ -74,7 +74,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1, ml: '-80px' }}>
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
 

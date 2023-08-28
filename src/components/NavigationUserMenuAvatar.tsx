@@ -16,6 +16,12 @@ import { stringAvatar } from '@/utils/stringAvatar';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
+import { ContentCutOutlined } from '@mui/icons-material';
+
+const authItems = [
+  { label: 'Sign In', href: '/signin' },
+  { label: 'Sign Un', href: '/signup' },
+];
 
 const NavigationUserMenuAvatar = () => {
   const session = useSession();
@@ -31,6 +37,7 @@ const NavigationUserMenuAvatar = () => {
     setAnchorElUser(null);
   };
 
+  console.log('session -->', session);
   return (
     <Box sx={{ flexGrow: 0 }}>
       {session?.data ? (
@@ -44,19 +51,27 @@ const NavigationUserMenuAvatar = () => {
           </IconButton>
         </Tooltip>
       ) : (
-        <MuiLink
-          component={Link}
-          prefetch={false}
-          href='/signin'
-          sx={[
-            { '&:hover': { textDecoration: 'none' } },
-            pathname === '/signin' ? { color: '#ccc' } : { color: '#fff' },
-          ]}
-        >
-          <ListItemButton>
-            <ListItemText primary={'Sign In'} />
-          </ListItemButton>
-        </MuiLink>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+          {authItems.map((item) => (
+            <MuiLink
+              component={Link}
+              key={item.label}
+              prefetch={false}
+              href={item.href}
+              sx={[
+                { display: 'block', '&:hover': { textDecoration: 'none' } },
+                pathname === item.href ? { color: '#ccc' } : { color: '#fff' },
+              ]}
+            >
+              <ListItemButton sx={{ padding: '4px 10px' }}>
+                <ListItemText
+                  primary={item.label}
+                  sx={{ '& .MuiListItemText-primary': { fontSize: { xs: '0.8rem', sm: '1rem' } } }}
+                />
+              </ListItemButton>
+            </MuiLink>
+          ))}
+        </Box>
       )}
 
       <Menu

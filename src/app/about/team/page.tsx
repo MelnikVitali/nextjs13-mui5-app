@@ -51,10 +51,10 @@ const Team = () => {
         sx={{
           width: '100%',
           display: 'flex',
-          minHeight: '380px',
+          // minHeight: '380px',
           alignItems: 'center',
           justifyContent: 'center',
-          // margin: '30px 0px 50px 0px',
+          margin: '80px 0px 0px 0px',
         }}
       >
         <Grid

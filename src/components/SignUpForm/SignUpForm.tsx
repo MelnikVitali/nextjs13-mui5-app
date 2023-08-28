@@ -144,7 +144,7 @@ const SignUnForm: FC = () => {
                   pb: { sm: '3rem' },
                 }}
               >
-                Welcome To Loop True!
+                Welcome To Blog Next.js 13!
               </Typography>
               <Grid item xs={12} sm={6} sx={{ borderRight: { sm: '1px solid #ddd' } }}>
                 <Box

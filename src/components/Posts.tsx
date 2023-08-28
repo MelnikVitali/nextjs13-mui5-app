@@ -5,7 +5,16 @@ import { stringAvatar } from '@/utils/stringAvatar';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Avatar, Box, Button, Container, Grid, Typography, Pagination } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  Pagination,
+  useMediaQuery,
+} from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
 import ScrollToTop from 'react-scroll-to-top';
 
@@ -13,9 +22,9 @@ const firstIndex = 0;
 
 const Posts = () => {
   const shortText = (text: string) => text.substr(0, 126) + '...';
+  const matches = useMediaQuery('(max-width:600px)');
 
   const [search, setSearch] = useState('');
-  const [userId, setUserId] = useState(0);
 
   const { data, isLoading } = useSWR(search.trim() === '' ? ' ' : search, getPostsBySearch, {
     keepPreviousData: true,
@@ -51,6 +60,7 @@ const Posts = () => {
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 3 }}>
         <Pagination
           variant='outlined'
+          size={matches ? 'small' : 'medium'}
           color='primary'
           count={data?.posts ? Math.ceil(data?.posts?.length / pageSize) : 1}
           page={page}

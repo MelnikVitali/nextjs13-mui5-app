@@ -1,6 +1,19 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-### [Link to deployed App on Vercel](https://nextjs-blog-app-delta.vercel.app/)
+# Next.js 13 and Material UI 5 projects
+
+[Link to deployed App on Vercel](https://nextjs-blog-app-delta.vercel.app/)
+
+Author: Vitalii Melnyk
+
+## Technology Stack
+
+- Next.js 13
+- Next.js styles & libraries: Material-UI
+- SWR (React Hooks for Data Fetching)
+- NextAuth.js
+- React Hook Form and Yup
+- Firebase Authentication
 
 ## Getting Started
 
