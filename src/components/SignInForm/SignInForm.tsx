@@ -77,10 +77,9 @@ const SignInForm: FC = () => {
     });
 
     if (res && !res.error) {
-      console.log('res -->', res);
+      let promise = Promise.resolve('/profile');
 
-      router.push('/profile');
-      router.push('/profile');
+      promise.then((data) => router.push(data));
     } else {
       console.log(res);
     }
