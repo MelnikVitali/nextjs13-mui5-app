@@ -20,7 +20,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Link from 'next/link';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller, set } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 // import FormInput from '@/components/FormInput';
@@ -77,9 +77,8 @@ const SignInForm: FC = () => {
     });
 
     if (res && !res.error) {
-      let promise = Promise.resolve('/profile');
-
-      promise.then((data) => router.push(data));
+      setShowPassword(false);
+      router.push('/profile');
     } else {
       console.log(res);
     }
