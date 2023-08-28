@@ -77,6 +77,7 @@ const SignInForm: FC = () => {
     });
 
     if (res && !res.error) {
+      console.log('res -->', res);
       router.push('/profile');
     } else {
       console.log(res);
