@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState, type FC } from 'react';
 import {
@@ -79,7 +79,8 @@ const SignInForm: FC = () => {
     if (res && !res.error) {
       console.log('res -->', res);
 
-      router.replace('/profile');
+      router.push('/profile');
+      router.push('/profile');
     } else {
       console.log(res);
     }
