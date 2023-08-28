@@ -16,7 +16,6 @@ import { stringAvatar } from '@/utils/stringAvatar';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
-import { ContentCutOutlined } from '@mui/icons-material';
 
 const authItems = [
   { label: 'Sign In', href: '/signin' },
@@ -37,7 +36,6 @@ const NavigationUserMenuAvatar = () => {
     setAnchorElUser(null);
   };
 
-  console.log('session -->', session);
   return (
     <Box sx={{ flexGrow: 0 }}>
       {session?.data ? (

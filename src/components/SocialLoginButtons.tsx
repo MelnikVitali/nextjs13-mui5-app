@@ -28,8 +28,7 @@ export const OauthMuiLink = styled(Button)`
 
 const SocialLoginButtons = () => {
   const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get('callbackUrl') || '/profile';
-  const callbackUrl = '/profile';
+  const callbackUrl = searchParams.get('callbackUrl') || '/profile';
 
   return (
     <Box display='flex' flexDirection='column' sx={{ paddingLeft: { sm: '3rem' }, rowGap: '1rem' }}>
