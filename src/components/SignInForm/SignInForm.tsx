@@ -78,7 +78,9 @@ const SignInForm: FC = () => {
 
     if (res && !res.error) {
       setShowPassword(false);
-      router.push('/profile');
+      router.push('/profile', { scroll: true });
+      router.refresh();
+      router.push('/profile', { scroll: true });
     } else {
       console.log(res);
     }
