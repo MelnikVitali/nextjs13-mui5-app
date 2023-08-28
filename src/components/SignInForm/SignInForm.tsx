@@ -78,7 +78,8 @@ const SignInForm: FC = () => {
 
     if (res && !res.error) {
       console.log('res -->', res);
-      router.push('/profile');
+
+      router.replace('/profile');
     } else {
       console.log(res);
     }
