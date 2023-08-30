@@ -12,6 +12,7 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  Alert,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -19,9 +20,11 @@ import Link from 'next/link';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SocialLoginButtons from '@/components/SocialLoginButtons';
+import SocialLoginButtons from '@/components/Form/SocialLoginButtons';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
+import { users } from '@/data/users';
+import toast from 'react-hot-toast';
 
 interface IShowPassword {
   password: boolean;
@@ -37,7 +40,11 @@ interface IFormInputs {
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('Please enter your name').max(70),
+  name: yup
+    .string()
+    .required('Please enter your Full Name')
+    .min(4, 'Full Name must be more than 4 characters!')
+    .max(70),
   email: yup
     .string()
     .email('Please enter a valid email address')
@@ -59,14 +66,14 @@ const schema = yup.object().shape({
 const SignUnForm: FC = () => {
   const router = useRouter();
 
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState<IShowPassword>({
     password: false,
     confirmPassword: false,
   });
 
   const {
-    register,
-    watch,
     control,
     handleSubmit,
     formState: { errors },
@@ -89,25 +96,71 @@ const SignUnForm: FC = () => {
     event.preventDefault();
   };
 
-  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    console.log('Submit data', data);
-    // const res = await signUp('credentials', {
-    //   name: data.name,
-    //   email: data.email,
-    //   password: data.password,
-    //   redirect: false,
-    // });
-    // if (res && !res.error) {
-    //   router.push('/profile');
-    // } else {
-    //   console.log(res);
-    // }
+  const onSubmit: SubmitHandler<IFormInputs> = async (data, event?: React.BaseSyntheticEvent) => {
+    setError('');
+    setLoading(true);
+
+    const { name, email, password, isTrustDevice } = data;
+
+    try {
+      const resUserExists = await fetch('api/user-exists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const { user } = await resUserExists.json();
+      if (user) {
+        setLoading(false);
+        setError('User already exists.');
+        return;
+      }
+      const response = await fetch('api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          isTrustDevice,
+        }),
+      });
+
+      if (response.ok) {
+        setLoading(false);
+        event?.target.reset(); // reset after form submit
+
+        toast.success('User successfully registered.');
+        router.refresh();
+        router.push('/profile', { scroll: true });
+      } else {
+        const message = 'User registration failed.';
+        setLoading(false);
+        setError(message);
+        console.log(message);
+      }
+    } catch (error) {
+      const message = `Error during registration: ${error}`;
+      setLoading(false);
+      setError(message);
+      console.log(message);
+    }
   };
 
   return (
     <Container
       maxWidth={false}
-      sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      sx={{
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        mt: '3.5rem',
+      }}
     >
       <Grid
         container
@@ -168,7 +221,7 @@ const SignUnForm: FC = () => {
                       <TextField
                         {...field}
                         type='text'
-                        label='Name'
+                        label='Full Name'
                         variant='outlined'
                         required
                         focused
@@ -272,7 +325,7 @@ const SignUnForm: FC = () => {
                   />
 
                   <LoadingButton
-                    loading={false}
+                    loading={loading}
                     type='submit'
                     variant='contained'
                     sx={{
@@ -284,6 +337,11 @@ const SignUnForm: FC = () => {
                   >
                     Sign Up
                   </LoadingButton>
+                  {error && (
+                    <Alert variant='outlined' severity='error' sx={{ marginTop: '1rem' }}>
+                      {error}
+                    </Alert>
+                  )}
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>

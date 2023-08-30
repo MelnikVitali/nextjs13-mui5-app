@@ -3,7 +3,7 @@ function stringToColor(string: string) {
   let i;
 
   /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
+  for (i = 0; i < string?.length; i += 1) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
@@ -19,7 +19,7 @@ function stringToColor(string: string) {
 }
 
 export function stringAvatar(name: string) {
-  const nameUpperCase = name.toLocaleUpperCase();
+  const nameUpperCase = name?.toUpperCase();
 
   return {
     sx: {
@@ -30,8 +30,8 @@ export function stringAvatar(name: string) {
       fontSize: '14px',
     },
     children:
-      name.split(' ').length >= 2
-        ? `${nameUpperCase.split(' ')[0][0]}${nameUpperCase.split(' ')[1][0]}`
-        : `${nameUpperCase.split(' ')[0][0]}`,
+      name?.split(' ').length >= 2
+        ? `${nameUpperCase?.split(' ')[0][0]}${nameUpperCase?.split(' ')[1][0]}`
+        : `${nameUpperCase?.split(' ')[0][0]}`,
   };
 }

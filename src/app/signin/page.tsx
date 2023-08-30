@@ -1,4 +1,4 @@
-import SignInForm from '@/components/SignInForm/SignInForm';
+import SignInForm from '@/components/Form/SignInForm';
 import { FC } from 'react';
 
 const Signin: FC = () => {

@@ -1,9 +1,9 @@
 'use client';
-import Navigation from '@/components/Navigation';
+import Navigation from '@/components/Navigation/Navigation';
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-import NavigationUserMenuAvatar from './NavigationUserMenuAvatar';
+import NavigationUserMenuAvatar from '@/components/Navigation/NavigationUserMenuAvatar';
 
 const navItems = [
   { label: 'Home', href: '/' },

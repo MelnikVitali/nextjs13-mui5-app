@@ -1,6 +1,5 @@
 'use client';
-
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState, type FC } from 'react';
 import {
@@ -16,6 +15,7 @@ import {
   FormHelperText,
   InputAdornment,
   IconButton,
+  Alert,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -24,7 +24,7 @@ import { useForm, SubmitHandler, Controller, set } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 // import FormInput from '@/components/FormInput';
-import SocialLoginButtons from '@/components/SocialLoginButtons';
+import SocialLoginButtons from '@/components/Form/SocialLoginButtons';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
 
@@ -49,12 +49,11 @@ const schema = yup.object().shape({
 
 const SignInForm: FC = () => {
   const router = useRouter();
-
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const {
-    register,
-    watch,
     control,
     handleSubmit,
     formState: { errors },
@@ -68,28 +67,47 @@ const SignInForm: FC = () => {
     event.preventDefault();
   };
 
-  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    const res = await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      isTrustDevice: data.isTrustDevice,
-      redirect: false,
-    });
+  const onSubmit: SubmitHandler<IFormInputs> = async (data, event?: React.BaseSyntheticEvent) => {
+    event?.preventDefault();
+    const { email, password } = data;
 
-    if (res && !res.error) {
-      setShowPassword(false);
-      // router.push('/profile', { scroll: true });
+    setError('');
+    setLoading(true);
+
+    try {
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res?.error) {
+        setLoading(false);
+        setError('Invalid Credentials');
+        return;
+      }
+
       router.refresh();
       router.push('/profile', { scroll: true });
-    } else {
-      console.log(res);
+    } catch (error) {
+      const message = `Error during Authorization: ${error}`;
+
+      setLoading(false);
+      setError(message);
+      console.log(message);
     }
   };
 
   return (
     <Container
       maxWidth={false}
-      sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      sx={{
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        mt: '3.5rem',
+      }}
     >
       <Grid
         container
@@ -143,6 +161,8 @@ const SignInForm: FC = () => {
                         {...field}
                         label='Email'
                         variant='outlined'
+                        focused
+                        required
                         error={!!errors.email}
                         helperText={errors.email ? errors.email?.message : ''}
                         fullWidth
@@ -162,6 +182,8 @@ const SignInForm: FC = () => {
                         type={showPassword ? 'text' : 'password'}
                         label='Password'
                         variant='outlined'
+                        focused
+                        required
                         error={!!errors.password}
                         helperText={errors.password ? errors.password?.message : ''}
                         fullWidth
@@ -208,7 +230,7 @@ const SignInForm: FC = () => {
                   />
 
                   <LoadingButton
-                    loading={false}
+                    loading={loading}
                     type='submit'
                     variant='contained'
                     sx={{
@@ -220,6 +242,11 @@ const SignInForm: FC = () => {
                   >
                     Login
                   </LoadingButton>
+                  {error && (
+                    <Alert variant='outlined' severity='error' sx={{ marginTop: '1rem' }}>
+                      {error}
+                    </Alert>
+                  )}
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -263,7 +290,7 @@ const SignInForm: FC = () => {
                   <MuiLink
                     component={Link}
                     prefetch={false}
-                    href='/forgotPassword'
+                    href='/forgot-password'
                     sx={{
                       textDecoration: 'none',
                       color: '#3683dc',
