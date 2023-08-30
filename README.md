@@ -13,7 +13,8 @@ Author: Vitalii Melnyk
 - SWR (React Hooks for Data Fetching)
 - NextAuth.js
 - React Hook Form and Yup
-- Firebase Authentication
+- MongoDB
+- Mongoose
 
 ## Getting Started
 

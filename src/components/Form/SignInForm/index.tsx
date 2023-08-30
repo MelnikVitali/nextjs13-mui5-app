@@ -106,7 +106,7 @@ const SignInForm: FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        mt: '3.5rem',
+        mt: '3rem',
       }}
     >
       <Grid

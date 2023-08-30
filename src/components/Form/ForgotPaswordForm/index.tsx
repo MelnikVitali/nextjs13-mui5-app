@@ -116,7 +116,7 @@ const ForgotPaSwordForm: FC = () => {
               justifyContent='space-between'
               rowSpacing={5}
               sx={{
-                maxWidth: '21rem',
+                maxWidth: '18rem',
                 marginInline: 'auto',
               }}
             >
@@ -127,7 +127,6 @@ const ForgotPaSwordForm: FC = () => {
                   component='form'
                   noValidate
                   autoComplete='off'
-                  sx={{ paddingRight: { sm: '3rem' } }}
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <Typography
@@ -141,7 +140,7 @@ const ForgotPaSwordForm: FC = () => {
                   <Controller
                     name='email'
                     control={control}
-                    // defaultValue='example@dev.com'
+                    defaultValue=''
                     render={({ field }) => (
                       <TextField
                         {...field}

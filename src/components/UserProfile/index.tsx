@@ -7,6 +7,7 @@ import { Box, Button } from '@mui/material';
 const UserProfile = () => {
   const { data: session }: any = useSession();
 
+  console.log('session -->', session);
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: '3rem' }}>

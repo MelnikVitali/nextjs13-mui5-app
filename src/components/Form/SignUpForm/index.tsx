@@ -20,10 +20,8 @@ import Link from 'next/link';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SocialLoginButtons from '@/components/Form/SocialLoginButtons';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
-import { users } from '@/data/users';
 import toast from 'react-hot-toast';
 
 interface IShowPassword {
@@ -159,7 +157,7 @@ const SignUnForm: FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        mt: '3.5rem',
+        mt: '3rem',
       }}
     >
       <Grid
@@ -177,36 +175,35 @@ const SignUnForm: FC = () => {
               px: '1rem',
             }}
           >
+            <Typography
+              variant='h4'
+              component='h1'
+              sx={{
+                textAlign: 'center',
+                width: '100%',
+                mb: '',
+                pb: { sm: '2rem' },
+              }}
+            >
+              Welcome To Blog Next.js 13!
+            </Typography>
             <Grid
               item
               container
               justifyContent='space-between'
               rowSpacing={5}
               sx={{
-                maxWidth: { sm: '45rem' },
+                maxWidth: { sm: '18rem' },
                 marginInline: 'auto',
               }}
             >
-              <Typography
-                variant='h4'
-                component='h1'
-                sx={{
-                  textAlign: 'center',
-                  width: '100%',
-                  mb: '',
-                  pb: { sm: '3rem' },
-                }}
-              >
-                Welcome To Blog Next.js 13!
-              </Typography>
-              <Grid item xs={12} sm={6} sx={{ borderRight: { sm: '1px solid #ddd' } }}>
+              <Grid item xs={12} sm={12}>
                 <Box
                   display='flex'
                   flexDirection='column'
                   component='form'
                   noValidate
                   autoComplete='off'
-                  sx={{ paddingRight: { sm: '3rem' } }}
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <Typography variant='h6' component='h1' sx={{ textAlign: 'center', mb: '1rem' }}>
@@ -343,20 +340,6 @@ const SignUnForm: FC = () => {
                     </Alert>
                   )}
                 </Box>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant='h6'
-                  component='p'
-                  sx={{
-                    paddingLeft: { sm: '3rem' },
-                    mb: '1.5rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  Sign up using another provider:
-                </Typography>
-                <SocialLoginButtons />
               </Grid>
             </Grid>
             <Grid container justifyContent='center'>
