@@ -28,7 +28,9 @@ export const authOptions: AuthOptions = {
       },
 
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) return null;
+        if (!credentials?.email || !credentials.password) {
+          return null;
+        }
 
         try {
           await connectToMongoDB().catch((err) => {
@@ -58,7 +60,10 @@ export const authOptions: AuthOptions = {
     signIn: '/signin',
   },
   session: {
+    // The maximum age of the NextAuth.js issued JWT in seconds.
+    // Defaults to `session.maxAge`.
     strategy: 'jwt',
+    maxAge: 4 * 60 * 60, // 4 hours ??? 7 * 24 * 60 * 60; // 7 days;
   },
 };
 

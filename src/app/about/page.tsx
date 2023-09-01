@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const About = () => {
   return (
     <>
-      <h3>Select subitem</h3>
+      <h3 style={{ color: 'rgb(25, 118, 210)' }}>Select subitem</h3>
       <Box
         sx={{
           width: '100%',
@@ -33,7 +33,7 @@ const About = () => {
             padding: '50px',
           }}
         >
-          <Grid item xs={12} md={7} sx={{ paddingTop: '0 !important' }}>
+          <Grid item xs={12} md={6} sx={{ paddingTop: '0 !important', paddingRight: '0.8rem' }}>
             <Typography
               variant='h3'
               fontWeight={700}
@@ -45,7 +45,6 @@ const About = () => {
               Let's scale your business
             </Typography>
             <Typography
-              variant='h6'
               sx={{
                 opacity: '0.4',
                 paddingBottom: '30px',
@@ -59,12 +58,12 @@ const About = () => {
               component={Link}
               variant='contained'
               color='primary'
-              sx={{ width: '200px', fontSize: '16px' }}
+              sx={{ width: '200px', fontSize: '16px', mb: '3rem' }}
             >
               HIRE US
             </Button>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ paddingTop: '0 !important' }}>
+          <Grid item xs={12} md={6} sx={{ paddingTop: '0 !important' }}>
             <Image
               src={myteam}
               blurDataURL={blurMyTeam}
@@ -72,7 +71,7 @@ const About = () => {
               alt='My Team'
               width={640}
               height={300}
-              style={{ width: '100%', paddingTop: 0 }}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain', paddingTop: 0 }}
             />
           </Grid>
         </Grid>

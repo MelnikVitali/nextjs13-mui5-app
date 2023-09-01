@@ -18,7 +18,7 @@ export const GET = async (req: Request) => {
 export const POST = async (req: Request) => {
   const body = await req.json();
 
-  console.log(body);
+  // console.log(body);
 
   return NextResponse.json({ body });
 };

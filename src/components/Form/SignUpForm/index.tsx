@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 import { useState, type FC } from 'react';
 import {
   Container,

@@ -1,4 +1,4 @@
-import ForgotPaSwordForm from '@/components/Form/ForgotPaswordForm';
+import ForgotPaSwordForm from '@/components/Form/ForgotPasswordForm';
 import { FC } from 'react';
 
 const ForgotPaSword: FC = () => {

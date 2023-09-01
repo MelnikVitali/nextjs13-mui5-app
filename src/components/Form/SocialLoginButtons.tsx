@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Box, Link as MuiLink, Button } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { GoogleLoginButton } from 'react-social-login-buttons';
 
 // Styled Material UI Link Component
@@ -32,6 +33,12 @@ const SocialLoginButtons = () => {
   const callbackUrl = searchParams.get('callbackUrl') || '/profile';
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (loading) {
+      setLoading(false);
+    }
+  }, []);
+
   return (
     <Box display='flex' flexDirection='column' sx={{ paddingLeft: { sm: '3rem' }, rowGap: '1rem' }}>
       <Button
@@ -40,7 +47,7 @@ const SocialLoginButtons = () => {
           setLoading(true);
         }}
         sx={styles.button}
-        // disabled={loading}
+        disabled={loading}
       >
         <Image
           src='/google.svg'
@@ -49,7 +56,7 @@ const SocialLoginButtons = () => {
           width={32}
           height={32}
           style={{ height: '2rem' }}
-          priority
+          priority={true}
         />
         Sign in with Google
       </Button>
@@ -59,7 +66,7 @@ const SocialLoginButtons = () => {
           setLoading(true);
         }}
         sx={styles.button}
-        // disabled={loading}
+        disabled={loading}
       >
         <Image
           src='/github.svg'
@@ -68,7 +75,7 @@ const SocialLoginButtons = () => {
           width={32}
           height={32}
           style={{ height: '2rem' }}
-          priority
+          priority={true}
         />
         Sign in with GitHub
       </Button>

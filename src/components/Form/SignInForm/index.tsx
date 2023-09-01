@@ -69,7 +69,7 @@ const SignInForm: FC = () => {
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data, event?: React.BaseSyntheticEvent) => {
     event?.preventDefault();
-    const { email, password } = data;
+    const { email, password, isTrustDevice } = data;
 
     setError('');
     setLoading(true);
@@ -78,6 +78,7 @@ const SignInForm: FC = () => {
       const res = await signIn('credentials', {
         email,
         password,
+        isTrustDevice,
         redirect: false,
       });
 

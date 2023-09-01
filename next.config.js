@@ -23,6 +23,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/public/sample-blog-posts/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'static.wixstatic.com',
+                port: '',
+                pathname: '/media/**',
+            },
         ],
     },
 };

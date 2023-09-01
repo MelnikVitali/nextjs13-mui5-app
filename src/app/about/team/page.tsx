@@ -11,7 +11,7 @@ const Team = () => {
       id: 1,
       name: 'Karl Brighton',
       statement:
-        'The team perfectly fit the specialized skill set required. They focused on the most essential features helping us launch the platform eight months faster than planned. /n/n',
+        'The team perfectly fit the specialized skill set required. They focused on the most essential features helping us launch the platform eight months faster than planned.',
       image_url:
         'https://sweta-myteam-website-fm.netlify.app/static/media/avatar-kady.78fc482c.jpg',
       position: 'Software Engineer at Kadex',
@@ -53,7 +53,7 @@ const Team = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: '80px 0px 26px',
+          margin: '38px 0px 18px',
         }}
       >
         <Grid
@@ -67,7 +67,7 @@ const Team = () => {
             width: '100vw !important',
           }}
         >
-          <Grid item xs={12} md={5} sx={{ marginLeft: '0px', paddingTop: '0 !important' }}>
+          <Grid item xs={12} md={5} sx={{}}>
             <Image
               src={bestTeams}
               blurDataURL={blurMyTeam}
@@ -75,11 +75,11 @@ const Team = () => {
               alt='My Team'
               width={640}
               height={300}
-              style={{ width: '100%', paddingTop: 0 }}
+              style={{ width: '100%', height: 'auto', objectFit: 'contain', paddingTop: 0 }}
             />
           </Grid>
 
-          <Grid item xs={12} md={6} sx={{ paddingTop: '0 !important' }}>
+          <Grid item xs={12} md={7} sx={{ paddingTop: '0 !important' }}>
             <Typography
               variant='h3'
               fontWeight={700}

@@ -3,11 +3,11 @@
 import { Container, UserEmail, UserName, Wrapper } from './styles';
 import { useSession, signOut } from 'next-auth/react';
 import { Box, Button } from '@mui/material';
+import Image from 'next/image';
 
 const UserProfile = () => {
   const { data: session }: any = useSession();
 
-  console.log('session -->', session);
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: '3rem' }}>
@@ -21,7 +21,7 @@ const UserProfile = () => {
             </h1>
             <UserEmail>{session?.user?.email}</UserEmail>
 
-            <Button variant='contained' onClick={() => signOut()}>
+            <Button variant='contained' onClick={() => signOut({ callbackUrl: '/' })}>
               Sign out
             </Button>
           </>
