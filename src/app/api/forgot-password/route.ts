@@ -31,7 +31,7 @@ export async function POST(req: Request, res: Response) {
       html: `
       <div>
         <p>Hello, ${user.name}</p>
-        <p>Please follow <a href="${process.env.NEXTAUTH_URL}/reset-password/${user._id}">this link</a> to reset your password.</p>
+        <p>Please follow <button style="background-color: rgb(25, 118, 210); font-size: 16px;"> <a href="${process.env.NEXTAUTH_URL}/reset-password/${user._id}" style="text-decoration: none; color: white;">this link</a></button> to reset your password.</p>
       </div>
       `,
     };
