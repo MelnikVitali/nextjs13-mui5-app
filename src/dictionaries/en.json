@@ -1,0 +1,44 @@
+{
+  "navigation": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "page": {
+    "home": {
+      "title": "Welcome to",
+      "titleSpan": "Next.js 13",
+      "subtitle": "Internationalization in NextJs 13 App router (sample only on home page)",
+      "cards": [
+        {
+          "title": "Documentation",
+          "subtitle": "Find in-depth information about Next.js features and API.",
+          "link": "https://nextjs.org/learn"
+        },
+        {
+          "title": "Learn",
+          "subtitle": "Learn about Next.js in an interactive course with quizzes!",
+          "link": "https://github.com/vercel/next.js/tree/master/examples"
+        },
+        {
+          "title": "Examples",
+          "subtitle": "Discover and deploy boilerplate example Next.js projects.",
+          "link": "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-ap"
+        },
+        {
+          "title": "Deploy",
+          "subtitle": "Instantly deploy your Next.js site to a public URL with Vercel.",
+          "link": "https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        }
+      ]
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "This is the blog page"
+    }
+  }
+}

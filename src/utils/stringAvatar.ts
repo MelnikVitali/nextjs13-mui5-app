@@ -24,10 +24,10 @@ export function stringAvatar(name: string) {
   return {
     sx: {
       bgcolor: stringToColor(name),
-      width: 28,
-      height: 28,
+      width: 36,
+      height: 36,
       mr: 1,
-      fontSize: '14px',
+      fontSize: '16px',
     },
     children:
       name?.split(' ').length >= 2

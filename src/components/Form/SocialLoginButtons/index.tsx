@@ -6,27 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Box, Link as MuiLink, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
-// import { GoogleLoginButton } from 'react-social-login-buttons';
-
-// Styled Material UI Link Component
-const styles = {
-  button: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f6f7',
-    borderRadius: 1,
-    padding: '0.6rem 0',
-    columnGap: '1rem',
-    textDecoration: 'none',
-    color: '#393e45',
-    fontWeight: 500,
-    '&:hover': {
-      backgroundColor: ' #fff',
-      boxShadow: '0 1px 13px 0 rgb(0 0 0 / 15%)',
-    },
-  },
-};
+import { styles } from './styles';
+import githubImage from '../../../../public/github.svg';
+import googleImage from '../../../../public/google.svg';
 
 const SocialLoginButtons = () => {
   const searchParams = useSearchParams();
@@ -50,7 +32,7 @@ const SocialLoginButtons = () => {
         disabled={loading}
       >
         <Image
-          src='/google.svg'
+          src={googleImage}
           alt='Google Logo'
           className='dark:invert'
           width={32}
@@ -69,7 +51,7 @@ const SocialLoginButtons = () => {
         disabled={loading}
       >
         <Image
-          src='/github.svg'
+          src={githubImage}
           alt='GitHub Logo'
           className='dark:invert'
           width={32}

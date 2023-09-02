@@ -1,7 +1,7 @@
 import SignUnForm from '@/components/Form/SignUpForm/';
+import { authOptions } from '@/configs/authOptions';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import { FC } from 'react';
 
 const Signup: FC = async () => {

@@ -1,0 +1,44 @@
+{
+  "navigation": {
+    "home": "Головна",
+    "blog": "Блог",
+    "about": "Про нас"
+  },
+  "page": {
+    "home": {
+      "title": "Ласкаво просимо до",
+      "titleSpan": "Next.js 13",
+      "subtitle": "Інтернаціоналізація в маршрутизаторі NextJs 13 App (зразок лише на головній сторінці)",
+      "cards": [
+        {
+          "title": "Документація",
+          "subtitle": "Знайдіть докладну інформацію про функції та API Next.js.",
+          "link": "https://nextjs.org/learn"
+        },
+        {
+          "title": "Вчитися",
+          "subtitle": "Дізнайтесь про Next.js в інтерактивному курсі з вікторинами!",
+          "link": "https://github.com/vercel/next.js/tree/master/examples"
+        },
+        {
+          "title": "Приклади",
+          "subtitle": "Знайдіть та розгорніть типові приклади проектів Next.js.",
+          "link": "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-ap"
+        },
+        {
+          "title": "Розгортати",
+          "subtitle": "Миттєво розгорніть свій сайт Next.js за загальнодоступною URL-адресою за допомогою Vercel.",
+          "link": "https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        }
+      ]
+    },
+    "about": {
+      "title": "Про нас",
+      "description": "Ця сторінка про нас"
+    },
+    "blog": {
+      "title": "Блог",
+      "description": "Ця сторінка блогу"
+    }
+  }
+}

@@ -100,24 +100,20 @@ const Posts = () => {
                       <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                         <Avatar
                           {...stringAvatar(
-                            `${
-                              authors?.users.find((item: { id: number }) => item.id === post.userId)
-                                .firstName
-                            } ${
-                              authors?.users.find((item: { id: number }) => item.id === post.userId)
-                                .lastName
-                            }`,
+                            `${authors?.users.find(
+                              (item: { id: number }) => item.id === post.userId,
+                            ).firstName} ${authors?.users.find(
+                              (item: { id: number }) => item.id === post.userId,
+                            ).lastName}`,
                           )}
                         />
                         <Box display={'flex'}>
                           <Typography variant='subtitle2'>
-                            {`${
-                              authors?.users.find((item: { id: number }) => item.id === post.userId)
-                                .firstName
-                            } ${
-                              authors?.users.find((item: { id: number }) => item.id === post.userId)
-                                .lastName
-                            }`}
+                            {`${authors?.users.find(
+                              (item: { id: number }) => item.id === post.userId,
+                            ).firstName} ${authors?.users.find(
+                              (item: { id: number }) => item.id === post.userId,
+                            ).lastName}`}
                           </Typography>
                         </Box>
                       </Box>

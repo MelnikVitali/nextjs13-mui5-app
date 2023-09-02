@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import {
   Link as MuiLink,
@@ -9,18 +8,15 @@ import {
   MenuItem,
   Tooltip,
   Typography,
-  ListItemButton,
-  ListItemText,
 } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import { green, pink } from '@mui/material/colors';
 import { stringAvatar } from '@/utils/stringAvatar';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 
-const authItems = [
-  { label: 'Sign In', href: '/signin' },
-  { label: 'Sign Un', href: '/signup' },
-];
+const authItems = [{ label: 'Sign In', href: '/signin' }];
 
 const NavigationUserMenuAvatar = () => {
   const session = useSession();
@@ -40,36 +36,27 @@ const NavigationUserMenuAvatar = () => {
     <Box sx={{ flexGrow: 0 }}>
       {session?.data ? (
         <Tooltip title='Open settings'>
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <IconButton onClick={handleOpenUserMenu} sx={{}}>
             <Avatar
               src={session.data?.user?.image as string}
               {...stringAvatar(session.data?.user?.name as string)}
               alt={session.data?.user?.name as string}
+              // sx={{ width: 36, height: 36 }}
             />
           </IconButton>
         </Tooltip>
       ) : (
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-          {authItems.map((item) => (
-            <MuiLink
-              component={Link}
-              key={item.label}
-              prefetch={false}
-              href={item.href}
-              sx={[
-                { display: 'block', '&:hover': { textDecoration: 'none' } },
-                pathname === item.href ? { color: '#ccc' } : { color: '#fff' },
-              ]}
-            >
-              <ListItemButton sx={{ padding: '4px 10px' }}>
-                <ListItemText
-                  primary={item.label}
-                  sx={{ '& .MuiListItemText-primary': { fontSize: { xs: '0.8rem', sm: '1rem' } } }}
-                />
-              </ListItemButton>
-            </MuiLink>
-          ))}
-        </Box>
+        <Tooltip title='Sign in'>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+            {authItems.map((item) => (
+              <MuiLink component={Link} key={item.label} prefetch={false} href={item.href}>
+                <Avatar sx={{ bgcolor: green[500], width: 36, height: 36 }}>
+                  <LoginIcon />
+                </Avatar>
+              </MuiLink>
+            ))}
+          </Box>
+        </Tooltip>
       )}
 
       <Menu
@@ -93,7 +80,7 @@ const NavigationUserMenuAvatar = () => {
             onClick={handleCloseUserMenu}
             sx={[
               { textAlign: 'center', '&:hover': { textDecoration: 'none' } },
-              pathname === '/profile' ? { color: '#0f7dc6' } : null,
+              pathname === `${pathname.substr(0, 3)}/profile` ? { color: '#0f7dc6' } : null,
             ]}
           >
             <Typography textAlign='center'> Profile</Typography>

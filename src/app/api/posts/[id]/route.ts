@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { headers, cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { posts } from '../../../../data/posts';
+import { posts } from '@/data/posts';
 
 interface Params {
   params: {

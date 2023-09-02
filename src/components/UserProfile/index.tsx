@@ -3,7 +3,6 @@
 import { Container, UserEmail, UserName, Wrapper } from './styles';
 import { useSession, signOut } from 'next-auth/react';
 import { Box, Button } from '@mui/material';
-import Image from 'next/image';
 
 const UserProfile = () => {
   const { data: session }: any = useSession();

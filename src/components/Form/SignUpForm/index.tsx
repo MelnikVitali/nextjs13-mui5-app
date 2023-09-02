@@ -100,7 +100,7 @@ const SignUnForm: FC = () => {
     const { name, email, password, isTrustDevice } = data;
 
     try {
-      const resUserExists = await fetch('api/user-exists', {
+      const resUserExists = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user-exists`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const SignUnForm: FC = () => {
         setError('User already exists.');
         return;
       }
-      const response = await fetch('api/signup', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const SignUnForm: FC = () => {
 
         toast.success('User successfully registered.');
         router.refresh();
-        router.push('/profile', { scroll: true });
+        router.push('/signin', { scroll: true });
       } else {
         const message = 'User registration failed.';
         setLoading(false);

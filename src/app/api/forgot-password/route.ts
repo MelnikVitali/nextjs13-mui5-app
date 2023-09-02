@@ -2,8 +2,6 @@ import nodemailer from 'nodemailer';
 import { connectToMongoDB } from '@/lib/mongodb';
 import User from '@/models/user';
 import { NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
-import { IUser } from '@/types/User';
 
 export async function POST(req: Request, res: Response) {
   try {

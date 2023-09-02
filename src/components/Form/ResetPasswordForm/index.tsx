@@ -1,5 +1,4 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import { useState, type FC } from 'react';
 import {
   Container,
@@ -22,7 +21,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // import FormInput from '@/components/FormInput';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
-import toast from 'react-hot-toast';
 
 interface IShowPassword {
   password: boolean;
@@ -43,8 +41,6 @@ const schema = yup.object().shape({
   confirmPassword: yup
     .string()
     .required('Please re-type your password')
-    // use oneOf to match one of the values inside the array.
-    // use "ref" to get the value of password.
     .oneOf([yup.ref('password')], 'Passwords does not match'),
 });
 
@@ -53,7 +49,6 @@ type IResetProps = {
 };
 
 const ResetPasswordForm: FC<IResetProps> = ({ id }) => {
-  const router = useRouter();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);

@@ -2,8 +2,6 @@ import { connectToMongoDB } from '@/lib/mongodb';
 import User from '@/models/user';
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { IUser } from '@/types/User';
-import { redirect } from 'next/navigation';
 
 interface Params {
   params: {

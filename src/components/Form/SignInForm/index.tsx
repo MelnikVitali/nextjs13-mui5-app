@@ -156,7 +156,7 @@ const SignInForm: FC = () => {
                   <Controller
                     name='email'
                     control={control}
-                    defaultValue='example@dev.com'
+                    defaultValue=''
                     render={({ field }) => (
                       <TextField
                         {...field}

@@ -3,13 +3,16 @@ import Link from 'next/link';
 import { Link as MuiLink } from '@mui/material';
 import { FC } from 'react';
 import { usePathname } from 'next/navigation';
+import { Locale } from '@/i18n.config';
 
-interface AboutLayoutProps {
+interface Props {
   children: React.ReactNode;
+  params: { lang: Locale };
 }
 
-const AboutLayout: FC<AboutLayoutProps> = ({ children }) => {
+const AboutLayout: FC<Props> = ({ children, params: { lang } }) => {
   const pathname = usePathname();
+
   return (
     <div>
       <h1>About us</h1>
@@ -20,7 +23,7 @@ const AboutLayout: FC<AboutLayoutProps> = ({ children }) => {
             underline='hover'
             color='inherit'
             component={Link}
-            sx={{ color: `${pathname === '/about/team' ? '#0f7dc6' : 'inherit'}` }}
+            sx={{ color: `${pathname === `/${lang}/about/team` ? '#0f7dc6' : 'inherit'}` }}
           >
             Team
           </MuiLink>
@@ -30,7 +33,7 @@ const AboutLayout: FC<AboutLayoutProps> = ({ children }) => {
             href='/about/contacts'
             underline='hover'
             component={Link}
-            sx={{ color: `${pathname === '/about/contacts' ? '#0f7dc6' : 'inherit'}` }}
+            sx={{ color: `${pathname === `/${lang}/about/contacts` ? '#0f7dc6' : 'inherit'}` }}
           >
             Contacts
           </MuiLink>

@@ -12,7 +12,9 @@ Author: Vitalii Melnyk
 - Next.js styles & libraries: Material-UI
 - SWR (React Hooks for Data Fetching)
 - NextAuth.js
-- React Hook Form and Yup
+- i18n
+- React Hook Form
+- Yup
 - MongoDB
 - Mongoose
 

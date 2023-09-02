@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 interface NavLink {
   label: string;
@@ -31,6 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({
   mobileOpen,
 }) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -40,7 +41,8 @@ const Navigation: React.FC<NavigationProps> = ({
       <Divider />
       <List sx={{ marginLeft: 0 }}>
         {navLinks.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive =
+            pathname === `${pathname.substr(0, 3)}${link.href !== '/' ? link.href : ''}`;
           return (
             <MuiLink
               component={Link}
@@ -76,8 +78,8 @@ const Navigation: React.FC<NavigationProps> = ({
     <>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
         {navLinks.map((link) => {
-          const isActive = pathname === link.href;
-
+          const isActive =
+            pathname === `${pathname.substr(0, 3)}${link.href !== '/' ? link.href : ''}`;
           return (
             <MuiLink
               component={Link}

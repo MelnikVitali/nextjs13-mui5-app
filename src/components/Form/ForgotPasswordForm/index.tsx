@@ -1,7 +1,5 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
-import { useState, type FC } from 'react';
+import { useState, FC } from 'react';
 import {
   Container,
   Grid,
@@ -9,27 +7,17 @@ import {
   Typography,
   Stack,
   Link as MuiLink,
-  FormControlLabel,
-  Checkbox,
   TextField,
-  FormHelperText,
-  InputAdornment,
-  IconButton,
   Alert,
 } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Link from 'next/link';
 import { useForm, SubmitHandler, Controller, set } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import FormInput from '@/components/FormInput';
-import SocialLoginButtons from '@/components/Form/SocialLoginButtons';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
 import toast from 'react-hot-toast';
-import { Toaster } from 'react-hot-toast';
-
+import { usePathname, useRouter } from 'next/navigation';
 interface IFormInputs {
   email: string;
 }
@@ -42,12 +30,10 @@ const schema = yup.object().shape({
 });
 
 const ForgotPaSwordForm: FC = () => {
-  const router = useRouter();
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     control,
@@ -61,13 +47,11 @@ const ForgotPaSwordForm: FC = () => {
     event?.preventDefault();
     const { email } = data;
 
-    // console.log('ForgotPassword Email: ', email);
-
     setError('');
     setLoading(true);
 
     try {
-      const response = await fetch('api/forgot-password', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -97,16 +81,7 @@ const ForgotPaSwordForm: FC = () => {
   };
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        mt: '3.5rem',
-      }}
-    >
+    <Container maxWidth={false} sx={styles.container}>
       <Grid
         container
         justifyContent='center'
@@ -114,14 +89,7 @@ const ForgotPaSwordForm: FC = () => {
         sx={{ width: '100%', height: '100%', margin: 'auto' }}
       >
         <Grid item sx={{ maxWidth: '70rem', width: '100%', backgroundColor: '#fff' }}>
-          <Grid
-            container
-            sx={{
-              boxShadow: { sm: '0 0 5px #ddd' },
-              py: '8rem',
-              px: '1rem',
-            }}
-          >
+          <Grid container sx={styles.containerForms}>
             <Grid item container justifyContent='space-between' rowSpacing={5}>
               <Grid item xs={12} sm={12}>
                 <Box
@@ -135,12 +103,7 @@ const ForgotPaSwordForm: FC = () => {
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   {success ? (
-                    <Box
-                      sx={{
-                        maxWidth: '560px',
-                        textAlign: 'center',
-                      }}
-                    >
+                    <Box sx={styles.item}>
                       <Typography
                         variant='h6'
                         component='h1'
@@ -157,16 +120,7 @@ const ForgotPaSwordForm: FC = () => {
                       </Typography>
                     </Box>
                   ) : (
-                    <Box
-                      sx={{
-                        width: '100%',
-                        maxWidth: '18rem',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
+                    <Box sx={styles.boxPassword}>
                       <Typography
                         variant='h6'
                         component='h1'
@@ -198,12 +152,7 @@ const ForgotPaSwordForm: FC = () => {
                         loading={loading}
                         type='submit'
                         variant='contained'
-                        sx={{
-                          py: '0.8rem',
-                          mt: 2,
-                          width: '80%',
-                          marginInline: 'auto',
-                        }}
+                        sx={styles.btn}
                       >
                         Submit
                       </LoadingButton>
@@ -216,20 +165,7 @@ const ForgotPaSwordForm: FC = () => {
                   )}
                   <Grid container justifyContent='center'>
                     <Stack sx={{ mt: '1.5rem', textAlign: 'center' }}>
-                      <MuiLink
-                        component={Link}
-                        prefetch={false}
-                        href='/signin'
-                        sx={{
-                          textDecoration: 'none',
-                          fontWeight: 500,
-                          color: '#3683dc',
-                          '&:hover': {
-                            textDecoration: 'underline',
-                            color: '#5ea1b6',
-                          },
-                        }}
-                      >
+                      <MuiLink component={Link} prefetch={false} href='/signin' sx={styles.link}>
                         Return to Login
                       </MuiLink>
                     </Stack>

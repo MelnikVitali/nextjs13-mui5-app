@@ -1,5 +1,5 @@
 'use client';
-import Navigation from '@/components/Navigation/Navigation';
+import Navigation from '@/components/Navigation';
 import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const Header = () => {
               fontSize: { xs: '1rem', sm: '1.25rem' },
             }}
           >
-            Blog Next.js 13
+            Next.js 13 App
           </Typography>
 
           <Navigation
