@@ -107,7 +107,7 @@ const Posts = () => {
                             ).lastName}`,
                           )}
                         />
-                        <Box display={'flex'}>
+                        <Box display={'flex'} sx={{ ml: 1 }}>
                           <Typography variant='subtitle2'>
                             {`${authors?.users.find(
                               (item: { id: number }) => item.id === post.userId,

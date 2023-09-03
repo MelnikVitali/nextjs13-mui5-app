@@ -1,5 +1,5 @@
 'use client';
-import { Box, Typography, TextField, TextareaAutosize, Button } from '@mui/material';
+import { Box, Typography, TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { styles } from './styles';
 
@@ -48,15 +48,13 @@ const Contact = () => {
         />
 
         <TextField
-          aria-label='minimum height'
+          id='outlined-textarea'
           label='Enter a message'
-          variant='outlined'
-          placeholder='Enter a message'
-          minRows={5}
-          multiline
-          fullWidth
-          sx={styles.textField}
           value={message}
+          minRows={6}
+          placeholder='Enter a message'
+          spellCheck
+          multiline
           onChange={(e) => setMessage(e.target.value)}
         />
 

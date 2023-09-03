@@ -26,7 +26,6 @@ export function stringAvatar(name: string) {
       bgcolor: stringToColor(name),
       width: 36,
       height: 36,
-      mr: 1,
       fontSize: '16px',
     },
     children:

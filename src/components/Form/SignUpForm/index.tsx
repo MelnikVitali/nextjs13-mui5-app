@@ -165,7 +165,7 @@ const SignUnForm: FC = () => {
         alignItems='center'
         sx={{ width: '100%', height: '100%', margin: 'auto' }}
       >
-        <Grid item sx={{ maxWidth: '70rem', width: '100%', backgroundColor: '#fff' }}>
+        <Grid item sx={{ maxWidth: '70rem', width: '100%' }}>
           <Grid
             container
             sx={{

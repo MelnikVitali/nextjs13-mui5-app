@@ -41,7 +41,6 @@ const NavigationUserMenuAvatar = () => {
               src={session.data?.user?.image as string}
               {...stringAvatar(session.data?.user?.name as string)}
               alt={session.data?.user?.name as string}
-              // sx={{ width: 36, height: 36 }}
             />
           </IconButton>
         </Tooltip>
@@ -50,7 +49,7 @@ const NavigationUserMenuAvatar = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
             {authItems.map((item) => (
               <MuiLink component={Link} key={item.label} prefetch={false} href={item.href}>
-                <Avatar sx={{ bgcolor: green[500], width: 36, height: 36 }}>
+                <Avatar sx={{ bgcolor: green[500], width: 32, height: 32 }}>
                   <LoginIcon />
                 </Avatar>
               </MuiLink>
@@ -60,7 +59,7 @@ const NavigationUserMenuAvatar = () => {
       )}
 
       <Menu
-        sx={{ mt: '45px' }}
+        sx={{ mt: '45px', bgcolor: 'background.default', color: 'text.primary' }}
         id='menu-appbar'
         anchorEl={anchorElUser}
         anchorOrigin={{
@@ -79,15 +78,25 @@ const NavigationUserMenuAvatar = () => {
           <MenuItem
             onClick={handleCloseUserMenu}
             sx={[
-              { textAlign: 'center', '&:hover': { textDecoration: 'none' } },
-              pathname === `${pathname.substr(0, 3)}/profile` ? { color: '#0f7dc6' } : null,
+              {
+                bgcolor: 'background.default',
+                color: 'text.primary',
+                textAlign: 'center',
+                '&:hover': { textDecoration: 'none' },
+              },
+              pathname === `${pathname.substr(0, 3)}/profile`
+                ? { color: '#0f7dc6', fontWeight: 800, fontSize: '1.1rem' }
+                : null,
             ]}
           >
             <Typography textAlign='center'> Profile</Typography>
           </MenuItem>
         </Link>
         <Link href='#' onClick={() => signOut({ callbackUrl: '/' })}>
-          <MenuItem onClick={handleCloseUserMenu}>
+          <MenuItem
+            onClick={handleCloseUserMenu}
+            sx={{ bgcolor: 'background.default', color: 'text.primary' }}
+          >
             <Typography textAlign='center'> Sign Out</Typography>
           </MenuItem>
         </Link>

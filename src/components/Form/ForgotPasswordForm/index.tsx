@@ -88,7 +88,7 @@ const ForgotPaSwordForm: FC = () => {
         alignItems='center'
         sx={{ width: '100%', height: '100%', margin: 'auto' }}
       >
-        <Grid item sx={{ maxWidth: '70rem', width: '100%', backgroundColor: '#fff' }}>
+        <Grid item sx={{ maxWidth: '70rem', width: '100%' }}>
           <Grid container sx={styles.containerForms}>
             <Grid item container justifyContent='space-between' rowSpacing={5}>
               <Grid item xs={12} sm={12}>

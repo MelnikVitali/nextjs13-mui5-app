@@ -116,7 +116,7 @@ const SignInForm: FC = () => {
         alignItems='center'
         sx={{ width: '100%', height: '100%', margin: 'auto' }}
       >
-        <Grid item sx={{ maxWidth: '70rem', width: '100%', backgroundColor: '#fff' }}>
+        <Grid item sx={{ maxWidth: '70rem', width: '100%' }}>
           <Grid
             container
             sx={{
@@ -213,12 +213,18 @@ const SignInForm: FC = () => {
                     render={({ field }) => (
                       <>
                         <FormControlLabel
-                          control={<Checkbox {...field} size='small' />}
+                          control={
+                            <Checkbox
+                              {...field}
+                              size='small'
+                              sx={{ pl: '10px', color: '#c8d0d4' }}
+                            />
+                          }
                           sx={{
                             '& .MuiFormControlLabel-label': {
                               fontSize: '0.8rem',
                               fontWeight: 400,
-                              color: '#5e5b5d',
+                              color: 'text.primary',
                             },
                           }}
                           label='Trust this device'
@@ -256,7 +262,7 @@ const SignInForm: FC = () => {
                   component='p'
                   sx={{
                     paddingLeft: { sm: '3rem' },
-                    mb: '1.5rem',
+                    mb: '2.2rem',
                     textAlign: 'center',
                   }}
                 >

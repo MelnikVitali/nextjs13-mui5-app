@@ -31,7 +31,6 @@ const Navigation: React.FC<NavigationProps> = ({
   mobileOpen,
 }) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -51,7 +50,8 @@ const Navigation: React.FC<NavigationProps> = ({
               key={link.label}
               sx={{
                 textDecoration: 'none',
-                color: 'rgba(0, 0, 0, 0.87)',
+                bgcolor: 'background.default',
+                color: 'text.primary',
                 '&:hover': { textDecoration: 'none' },
               }}
             >
@@ -59,7 +59,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 <ListItemButton
                   sx={[
                     { textAlign: 'center', '&:hover': { textDecoration: 'none' } },
-                    isActive ? { color: '#0f7dc6' } : null,
+                    isActive ? { color: 'rgb(25, 118, 210);', fontSize: '17px' } : null,
                   ]}
                 >
                   <ListItemText primary={link.label} />

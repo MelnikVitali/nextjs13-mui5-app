@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { Container, UserEmail, UserName, Wrapper } from './styles';
+import { UserEmail } from './styles';
 import { useSession, signOut } from 'next-auth/react';
 import { Box, Button } from '@mui/material';
 

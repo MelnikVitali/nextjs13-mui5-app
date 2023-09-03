@@ -87,15 +87,14 @@ const Team = () => {
           <Grid item sm={12} md={4} key={review.id}>
             <Card
               sx={{
-                backgroundColor: '#fff',
-                padding: '10px',
-                minHeight: '200px',
+                padding: '10px 10px 0px',
+                minHeight: '180px',
                 display: 'flex',
                 alignItems: 'center',
               }}
             >
               <CardContent>
-                <Typography sx={{ paddingBottom: '25px' }}>
+                <Typography sx={{ paddingBottom: '22px' }}>
                   &quot;{review.statement}&quot;
                 </Typography>
                 <Box sx={{ display: 'flex' }}>

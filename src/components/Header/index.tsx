@@ -4,6 +4,7 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import NavigationUserMenuAvatar from '@/components/Navigation/NavigationUserMenuAvatar';
+import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -49,6 +50,7 @@ const Header = () => {
             handleDrawerToggle={handleDrawerToggle}
             mobileOpen={mobileOpen}
           />
+          <ThemeToggle />
 
           <NavigationUserMenuAvatar />
         </Toolbar>

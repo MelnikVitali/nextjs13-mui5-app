@@ -3,6 +3,7 @@ import { Box, Card, Grid, Typography } from '@mui/material';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionary';
 import { IDictionary } from '@/types/Dictionary';
+import Link from 'next/link';
 
 type Props = {
   params: { lang: Locale };
@@ -17,9 +18,9 @@ export default async function Home({ params: { lang } }: Props) {
         <LocaleSwitcher />
         <h1>
           {page.home.title}{' '}
-          <a href='https://nextjs.org/docs' target='_blank' className='code'>
+          <Link href='https://nextjs.org/docs' target='_blank' style={{ color: '#1565c0' }}>
             {page.home.titleSpan}
-          </a>
+          </Link>
         </h1>
 
         <Typography paragraph className='description'>
