@@ -51,7 +51,10 @@ const BlogPost: FC<Props> = async ({ params: { id } }) => {
       <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', mt: 4 }}>
         <Avatar {...stringAvatar(`${user.firstName} ${user.lastName}`)} />
         <Box display={'flex'}>
-          <Typography variant='subtitle2'>{`${user.firstName} ${user.lastName}`}</Typography>
+          <Typography
+            variant='subtitle2'
+            sx={{ pl: 1 }}
+          >{`${user.firstName} ${user.lastName}`}</Typography>
         </Box>
       </Box>
       <div className={styles.backToBlog}>
