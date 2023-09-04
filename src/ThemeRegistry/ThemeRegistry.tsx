@@ -7,9 +7,15 @@ import { ThemeToggleContext } from '@/context/ThemeToggleContext';
 import { customTheme } from './theme';
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = React.useState<'light' | 'dark'>(
-    (window.localStorage.getItem('theme') as 'light' | 'dark') || 'light',
-  );
+  const [mounted, setMounted] = React.useState<boolean>(false);
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setMode(localStorage.getItem('theme') as 'light' | 'dark');
+      setMounted(true);
+    }
+  }, []);
 
   const colorMode = React.useMemo(
     () => ({
@@ -26,21 +32,25 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
       createTheme({
         ...customTheme,
         palette: {
-          mode,
+          mode: mounted ? mode : undefined,
         },
       }),
     [mode],
   );
 
   return (
-    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-      <ThemeToggleContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </ThemeToggleContext.Provider>
-    </NextAppDirEmotionCacheProvider>
+    <>
+      {mounted ? (
+        <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
+          <ThemeToggleContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              {children}
+            </ThemeProvider>
+          </ThemeToggleContext.Provider>
+        </NextAppDirEmotionCacheProvider>
+      ) : null}
+    </>
   );
 }
