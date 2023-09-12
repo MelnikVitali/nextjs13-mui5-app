@@ -24,5 +24,15 @@ export let customTheme = {
         }),
       },
     },
+    // Name of the component
+    MuiPopover: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: 'transparent !important',
+        },
+      },
+    },
   },
 };
