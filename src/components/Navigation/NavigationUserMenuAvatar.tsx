@@ -59,7 +59,11 @@ const NavigationUserMenuAvatar = () => {
       )}
 
       <Menu
-        sx={{ mt: '45px', bgcolor: 'background.default', color: 'text.primary' }}
+        sx={{
+          mt: '45px',
+          bgcolor: 'rgb(255, 255, 255)',
+          //  color: 'rgb(255, 255, 255)'
+        }}
         id='menu-appbar'
         anchorEl={anchorElUser}
         anchorOrigin={{
@@ -79,10 +83,13 @@ const NavigationUserMenuAvatar = () => {
             onClick={handleCloseUserMenu}
             sx={[
               {
-                bgcolor: 'background.default',
-                color: 'text.primary',
+                bgcolor: 'rgb(255, 255, 255)',
+                // color: 'rgb(255, 255, 255)',
                 textAlign: 'center',
-                '&:hover': { textDecoration: 'none' },
+                '&:hover': {
+                  textDecoration: 'none',
+                  background: '#F5F5F5 !important',
+                },
               },
               pathname === `${pathname.substr(0, 3)}/profile`
                 ? { color: '#0f7dc6', fontWeight: 800, fontSize: '1.1rem' }
@@ -95,7 +102,13 @@ const NavigationUserMenuAvatar = () => {
         <Link href='#' onClick={() => signOut({ callbackUrl: '/' })}>
           <MenuItem
             onClick={handleCloseUserMenu}
-            sx={{ bgcolor: 'background.default', color: 'text.primary' }}
+            sx={{
+              bgcolor: 'rgb(255, 255, 255)',
+              '&:hover': {
+                textDecoration: 'none',
+                background: '#F5F5F5 !important',
+              },
+            }}
           >
             <Typography textAlign='center'> Sign Out</Typography>
           </MenuItem>

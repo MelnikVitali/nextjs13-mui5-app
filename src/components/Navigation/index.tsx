@@ -50,8 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({
               key={link.label}
               sx={{
                 textDecoration: 'none',
-                bgcolor: 'background.default',
-                color: 'text.primary',
+                color: 'rgb(255, 255, 255)',
                 '&:hover': { textDecoration: 'none' },
               }}
             >

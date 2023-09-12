@@ -224,7 +224,7 @@ const SignInForm: FC = () => {
                             '& .MuiFormControlLabel-label': {
                               fontSize: '0.8rem',
                               fontWeight: 400,
-                              color: 'text.primary',
+                              color: 'rgb(255, 255, 255)',
                             },
                           }}
                           label='Trust this device'
