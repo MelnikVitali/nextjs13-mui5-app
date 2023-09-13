@@ -50,15 +50,18 @@ const Navigation: React.FC<NavigationProps> = ({
               key={link.label}
               sx={{
                 textDecoration: 'none',
-                color: 'rgb(255, 255, 255)',
+
                 '&:hover': { textDecoration: 'none' },
               }}
             >
               <ListItem key={link.label} disablePadding>
                 <ListItemButton
                   sx={[
-                    { textAlign: 'center', '&:hover': { textDecoration: 'none' } },
-                    isActive ? { color: 'rgb(25, 118, 210);', fontSize: '17px' } : null,
+                    {
+                      textAlign: 'center',
+                      '&:hover': { textDecoration: 'none' },
+                    },
+                    isActive ? { color: '#ea80fc', fontSize: '20px', fontWeight: 800 } : null,
                   ]}
                 >
                   <ListItemText primary={link.label} />
