@@ -8,13 +8,15 @@ import { customTheme } from './theme';
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState<boolean>(false);
-  const [mode, setMode] = React.useState<'light' | 'dark'>(
-    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',
-  );
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      setMode(localStorage.getItem('theme') as 'light' | 'dark');
+      if (!localStorage.getItem('theme')) {
+        window.localStorage.setItem('theme', 'light');
+      } else {
+        setMode(localStorage.getItem('theme') as 'light' | 'dark');
+      }
       setMounted(true);
     }
   }, []);

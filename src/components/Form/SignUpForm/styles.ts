@@ -1,7 +1,7 @@
 export const styles = {
   formInput: {
     '& label.Mui-focused': {
-      color: 'rgb(255, 255, 255)',
+      color: '#9A9A9A',
       fontWeight: 400,
     },
     '& .MuiInputBase-input': {
