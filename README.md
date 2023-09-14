@@ -9,10 +9,10 @@ Author: Vitalii Melnyk
 ## Technology Stack
 
 - Next.js 13
-- Next.js styles & libraries: Material-UI
+- Next.js styles & libraries: Material-UI 5
 - SWR (React Hooks for Data Fetching)
 - NextAuth.js
-- i18n
+- i18n(localisation)
 - React Hook Form
 - Yup
 - MongoDB
