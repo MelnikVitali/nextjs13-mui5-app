@@ -29,7 +29,6 @@ const SocialLoginButtons = () => {
           setLoading(true);
         }}
         sx={styles.button}
-        disabled={loading}
       >
         <Image
           src={googleImage}
@@ -48,7 +47,6 @@ const SocialLoginButtons = () => {
           setLoading(true);
         }}
         sx={styles.button}
-        disabled={loading}
       >
         <Image
           src={githubImage}
