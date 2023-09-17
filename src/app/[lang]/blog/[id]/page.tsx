@@ -1,13 +1,15 @@
-import { getPostById, getPostUserById } from '@/services/getPosts';
+import { FC } from 'react';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { FC } from 'react';
-import styles from './page.module.css';
 import Link from 'next/link';
+import { getPostById, getPostUserById } from '@/services/getPosts';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { blurPost } from '@/data/blurPost';
 import { stringAvatar } from '@/utils/stringAvatar';
+import { IAuthorPost } from '@/types/AuthorsPosts';
+import { IPost } from '@/types/Posts';
+import styles from './page.module.css';
 
 type Props = {
   params: {
@@ -24,8 +26,8 @@ export const generateMetadata = async ({ params: { id } }: Props): Promise<Metad
 };
 
 const BlogPost: FC<Props> = async ({ params: { id } }) => {
-  const post = await getPostById(id);
-  const user = await getPostUserById(post.userId);
+  const post: IPost = await getPostById(id);
+  const user: IAuthorPost = await getPostUserById(post.userId);
 
   return (
     <Box>

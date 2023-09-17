@@ -1,37 +1,27 @@
 'use client';
 import useSWR from 'swr';
-import { getPostsUsers, getPostsBySearch } from '@/services/getPosts';
-import { stringAvatar } from '@/utils/stringAvatar';
+import { getPostsBySearch } from '@/services/getPosts';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  Typography,
-  Pagination,
-  useMediaQuery,
-} from '@mui/material';
-import { ArrowForward } from '@mui/icons-material';
+import { Box, Container, Grid, Pagination, useMediaQuery } from '@mui/material';
 import ScrollToTop from 'react-scroll-to-top';
-import { styles } from './styles';
+import { IPosts } from '@/types/Posts';
+import Post from '@/components/Post';
 
 const firstIndex = 0;
 
 const Posts = () => {
-  const shortText = (text: string) => text.substr(0, 126) + '...';
   const matches = useMediaQuery('(max-width:600px)');
 
   const [search, setSearch] = useState('');
 
-  const { data, isLoading } = useSWR(search.trim() === '' ? ' ' : search, getPostsBySearch, {
-    keepPreviousData: true,
-  });
-
-  const { data: authors } = useSWR('users', getPostsUsers);
+  const { data, isLoading } = useSWR<IPosts>(
+    search.trim() === '' ? ' ' : search,
+    getPostsBySearch,
+    {
+      keepPreviousData: true,
+    },
+  );
 
   const [pageSize] = useState(4);
   const [page, setPage] = useState(1);
@@ -73,52 +63,9 @@ const Posts = () => {
         <Container sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Grid container mt={'0px'} spacing={5}>
             {blogs &&
-              blogs.map((post: any, index: number) => (
-                <Grid item lg={6} key={index} width={'100%'}>
-                  <Box sx={styles.boxPostTitle}>
-                    <Typography variant='h6' component='h2' mb={2} sx={{ fontWeight: 'bold' }}>
-                      {post.title}
-                    </Typography>
-                    <Typography variant='body2' color='text.secondary' mb={5}>
-                      {post.body ? shortText(post.body) : '...'}
-                    </Typography>
-                    <Box sx={styles.boxAvatar}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                        <Avatar
-                          {...stringAvatar(
-                            `${authors?.users.find(
-                              (item: { id: number }) => item.id === post.userId,
-                            ).firstName} ${authors?.users.find(
-                              (item: { id: number }) => item.id === post.userId,
-                            ).lastName}`,
-                          )}
-                        />
-                        <Box display={'flex'} sx={{ ml: 1 }}>
-                          <Typography variant='subtitle2'>
-                            {`${authors?.users.find(
-                              (item: { id: number }) => item.id === post.userId,
-                            ).firstName} ${authors?.users.find(
-                              (item: { id: number }) => item.id === post.userId,
-                            ).lastName}`}
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', flexGrow: 1 }}>
-                        <Link href={`/blog/${post.id}`} className='blog-link'>
-                          <Button
-                            endIcon={<ArrowForward />}
-                            color='primary'
-                            size='small'
-                            sx={{ lineHeight: 0 }}
-                          >
-                            Read more
-                          </Button>
-                        </Link>
-                      </Box>
-                    </Box>
-                  </Box>
-                </Grid>
-              ))}
+              blogs.map((post: any, index: number) => {
+                return <Post key={index} post={post} />;
+              })}
           </Grid>
         </Container>
         {blogs && blogs?.length === 0 && !isLoading && (

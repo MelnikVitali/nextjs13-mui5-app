@@ -9,12 +9,6 @@ export const getAllPosts = async () => {
 };
 
 export const getPostById = async (id: string) => {
-  // const host =
-  // process?.env.NODE_ENV === 'development' ? 'localhost:3000' : 'nextjs-blog-app-delta.vercel.app';
-  // const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
-  // const response = await fetch(`${protocol}://${host}/api/posts/${id}`, {
-  // next: { revalidate: 3600 },
-  // });
   const response = await fetch(`https://dummyjson.com/posts/${id}`, {
     next: { revalidate: 3600 },
   });
@@ -57,7 +51,7 @@ export const getPostsUsers = async () => {
   return response.json();
 };
 
-export const getPostUserById = async (id: string) => {
+export const getPostUserById = async (id: number) => {
   const response = await fetch(`https://dummyjson.com/users/${id}`, {
     next: { revalidate: 3600 },
   });
