@@ -1,34 +1,17 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useState, type FC } from 'react';
-import {
-  Container,
-  Grid,
-  Box,
-  Typography,
-  Stack,
-  Link as MuiLink,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Alert,
-} from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { FC } from 'react';
+import { Container, Grid, Box, Typography, Stack, Link as MuiLink, Alert } from '@mui/material';
 import Link from 'next/link';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
-import toast from 'react-hot-toast';
 
-interface IShowPassword {
-  password: boolean;
-  confirmPassword: boolean;
-}
-
-interface IFormInputs {
+import { signUnYupSchema } from '@/utils/yupSchemas';
+import TextInput from '../FormInputs/TextInput';
+import PasswordInput from '../FormInputs/PasswordInput';
+import { useSignUpSubmit } from '@/hooks/useSignUpSubmit';
+export interface IFormInputsSignUp {
   name: string;
   email: string;
   password: string;
@@ -36,305 +19,62 @@ interface IFormInputs {
   isTrustDevice?: boolean;
 }
 
-const schema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Please enter your Full Name')
-    .min(4, 'Full Name must be more than 4 characters!')
-    .max(70),
-  email: yup
-    .string()
-    .email('Please enter a valid email address')
-    .required('Please enter your email'),
-  password: yup
-    .string()
-    .required('Please enter your password.')
-    .min(6, 'Password must be more than 6 characters!')
-    .max(32, 'Password must be less than 32 characters!'),
-  confirmPassword: yup
-    .string()
-    .required('Please re-type your password')
-    // use oneOf to match one of the values inside the array.
-    // use "ref" to get the value of password.
-    .oneOf([yup.ref('password')], 'Passwords does not match'),
-  isTrustDevice: yup.boolean().default(false),
-});
-
 const SignUnForm: FC = () => {
-  const router = useRouter();
-
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState<IShowPassword>({
-    password: false,
-    confirmPassword: false,
-  });
-
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInputs>({
-    resolver: yupResolver<IFormInputs>(schema),
+  } = useForm<IFormInputsSignUp>({
+    resolver: yupResolver<IFormInputsSignUp>(signUnYupSchema),
   });
 
-  const handleClickShowPassword = (name: keyof IShowPassword) => {
-    if (name) {
-      setShowPassword((prev) => {
-        return {
-          ...prev,
-          [name]: !prev[name],
-        };
-      });
-    }
-  };
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  const onSubmit: SubmitHandler<IFormInputs> = async (data, event?: React.BaseSyntheticEvent) => {
-    setError('');
-    setLoading(true);
-
-    const { name, email, password, isTrustDevice } = data;
-
-    try {
-      const resUserExists = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user-exists`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const { user } = await resUserExists.json();
-      if (user) {
-        setLoading(false);
-        setError('User already exists.');
-        return;
-      }
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          isTrustDevice,
-        }),
-      });
-
-      if (response.ok) {
-        setLoading(false);
-        event?.target.reset(); // reset after form submit
-
-        toast.success('User successfully registered.');
-        router.refresh();
-        router.push('/signin', { scroll: true });
-      } else {
-        const message = 'User registration failed.';
-        setLoading(false);
-        setError(message);
-        console.log(message);
-      }
-    } catch (error) {
-      const message = `Error during registration: ${error}`;
-      setLoading(false);
-      setError(message);
-      console.log(message);
-    }
-  };
+  const [loading, error, onSubmit] = useSignUpSubmit();
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        mt: '3rem',
-      }}
-    >
-      <Grid
-        container
-        justifyContent='center'
-        alignItems='center'
-        sx={{ width: '100%', height: '100%', margin: 'auto' }}
-      >
+    <Container maxWidth={false} sx={styles.wrapper}>
+      <Grid container sx={styles.subWrapper}>
         <Grid item sx={{ maxWidth: '70rem', width: '100%' }}>
-          <Grid
-            container
-            sx={{
-              boxShadow: { sm: '0 0 5px #ddd' },
-              pt: '4rem',
-              px: '1rem',
-            }}
-          >
-            <Typography
-              variant='h4'
-              component='h1'
-              sx={{
-                textAlign: 'center',
-                width: '100%',
-                mb: '',
-                pb: { sm: '2rem' },
-              }}
-            >
+          <Grid container sx={styles.papier}>
+            <Typography variant='h4' component='h1' sx={styles.title}>
               Welcome To Blog Next.js 13!
             </Typography>
-            <Grid
-              item
-              container
-              justifyContent='space-between'
-              rowSpacing={5}
-              sx={{
-                maxWidth: { sm: '18rem' },
-                marginInline: 'auto',
-              }}
-            >
+            <Grid item container rowSpacing={5} sx={styles.containerForm}>
               <Grid item xs={12} sm={12}>
                 <Box
-                  display='flex'
-                  flexDirection='column'
                   component='form'
                   noValidate
                   autoComplete='off'
+                  sx={styles.formBox}
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <Typography variant='h6' component='h1' sx={{ textAlign: 'center', mb: '1rem' }}>
                     Create new your account
                   </Typography>
-
-                  <Controller
-                    name='name'
-                    control={control}
-                    defaultValue=''
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        type='text'
-                        label='Full Name'
-                        variant='outlined'
-                        required
-                        focused
-                        error={!!errors.name}
-                        helperText={errors.name ? errors.name?.message : ''}
-                        fullWidth
-                        margin='dense'
-                        sx={styles.formInput}
-                      />
-                    )}
-                  />
-
-                  <Controller
-                    name='email'
-                    control={control}
-                    defaultValue=''
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label='Email'
-                        variant='outlined'
-                        required
-                        focused
-                        error={!!errors.email}
-                        helperText={errors.email ? errors.email?.message : ''}
-                        fullWidth
-                        margin='dense'
-                        sx={styles.formInput}
-                      />
-                    )}
-                  />
-
-                  <Controller
+                  <TextInput name='name' control={control} errors={errors} label='Full Name' />
+                  <TextInput name='email' control={control} errors={errors} label='Email' />
+                  <PasswordInput
                     name='password'
                     control={control}
-                    defaultValue=''
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        type={showPassword.password ? 'text' : 'password'}
-                        label='Password'
-                        variant='outlined'
-                        required
-                        focused
-                        error={!!errors.password}
-                        helperText={errors.password ? errors.password?.message : ''}
-                        fullWidth
-                        margin='dense'
-                        sx={styles.formInput}
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position='end'>
-                              <IconButton
-                                aria-label='toggle password visibility'
-                                onClick={() => handleClickShowPassword('password')}
-                                onMouseDown={handleMouseDownPassword}
-                                edge='end'
-                              >
-                                {showPassword.password ? <VisibilityOff /> : <Visibility />}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    )}
+                    errors={errors}
+                    label='Password'
                   />
-
-                  <Controller
+                  <PasswordInput
                     name='confirmPassword'
                     control={control}
-                    defaultValue=''
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        type={showPassword.confirmPassword ? 'text' : 'password'}
-                        label='Confirm Password'
-                        variant='outlined'
-                        error={!!errors.confirmPassword}
-                        required
-                        focused
-                        helperText={errors.confirmPassword ? errors.confirmPassword?.message : ''}
-                        fullWidth
-                        margin='dense'
-                        sx={styles.formInput}
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position='end'>
-                              <IconButton
-                                aria-label='toggle password visibility'
-                                onClick={() => handleClickShowPassword('confirmPassword')}
-                                onMouseDown={handleMouseDownPassword}
-                                edge='end'
-                              >
-                                {showPassword.confirmPassword ? <VisibilityOff /> : <Visibility />}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    )}
+                    errors={errors}
+                    label='Confirm Password'
                   />
 
                   <LoadingButton
                     loading={loading}
                     type='submit'
                     variant='contained'
-                    sx={{
-                      py: '0.8rem',
-                      mt: 2,
-                      width: '80%',
-                      marginInline: 'auto',
-                    }}
+                    sx={styles.loadingButton}
                   >
                     Sign Up
                   </LoadingButton>
                   {error && (
-                    <Alert variant='outlined' severity='error' sx={{ marginTop: '1rem' }}>
+                    <Alert variant='outlined' severity='error' sx={styles.errorText}>
                       {error}
                     </Alert>
                   )}
@@ -345,19 +85,7 @@ const SignUnForm: FC = () => {
               <Stack sx={{ mt: '3rem', textAlign: 'center' }}>
                 <Typography sx={{ fontSize: '0.9rem', mb: '1rem' }}>
                   Already have an account?{' '}
-                  <MuiLink
-                    component={Link}
-                    prefetch={false}
-                    href='/signin'
-                    sx={{
-                      textDecoration: 'none',
-                      color: '#3683dc',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                        color: '#5ea1b6',
-                      },
-                    }}
-                  >
+                  <MuiLink component={Link} prefetch={false} href='/signin' sx={styles.linkSignIn}>
                     Login
                   </MuiLink>
                 </Typography>
@@ -371,9 +99,3 @@ const SignUnForm: FC = () => {
 };
 
 export default SignUnForm;
-function signUp(
-  arg0: string,
-  arg1: { email: string; password: string; isTrustDevice: boolean | undefined; redirect: boolean },
-) {
-  throw new Error('Function not implemented.');
-}

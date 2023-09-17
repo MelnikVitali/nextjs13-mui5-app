@@ -1,31 +1,54 @@
 export const styles = {
-  formInput: {
-    '& label.Mui-focused': {
-      color: '#9A9A9A',
-      fontWeight: 400,
-    },
-    '& .MuiInputBase-input': {
-      borderColor: '#c8d0d4',
-    },
-    '& .MuiInput-underline:after': {
-      border: 'none',
-    },
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-error': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#d32f2f',
-        },
-      },
-      '& fieldset': {
-        borderColor: '#c8d0d4',
-        borderRadius: 0,
-      },
-      '&:hover fieldset': {
-        border: '1px solid #c8d0d4',
-      },
-      '&.Mui-focused fieldset': {
-        border: '1px solid #c8d0d4',
-      },
+  wrapper: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    mt: '3.5rem',
+  },
+  subWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    margin: 'auto',
+  },
+  papier: {
+    boxShadow: { sm: '0 0 5px #ddd' },
+    py: '8rem',
+    px: '1rem',
+  },
+  formBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  success: {
+    maxWidth: '560px',
+    textAlign: 'center',
+  },
+  gridForm: {
+    width: '100%',
+    maxWidth: '18rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingButton: {
+    py: '0.8rem',
+    mt: 2,
+    width: '80%',
+    marginInline: 'auto',
+  },
+  signInLink: {
+    textDecoration: 'none',
+    fontWeight: 500,
+    color: '#3683dc',
+    '&:hover': {
+      textDecoration: 'underline',
+      color: '#5ea1b6',
     },
   },
 };

@@ -6,6 +6,19 @@ export const styles = {
     justifyContent: 'center',
     mt: '3.5rem',
   },
+  subContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    margin: 'auto',
+  },
+  formBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   containerForms: {
     boxShadow: { sm: '0 0 5px #ddd' },
     py: '8rem',
@@ -23,35 +36,7 @@ export const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  formInput: {
-    '& label.Mui-focused': {
-      color: '#9A9A9A',
-      fontWeight: 400,
-    },
-    '& .MuiInputBase-input': {
-      borderColor: '#c8d0d4',
-    },
-    '& .MuiInput-underline:after': {
-      border: 'none',
-    },
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-error': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#d32f2f',
-        },
-      },
-      '& fieldset': {
-        borderColor: '#c8d0d4',
-        borderRadius: 0,
-      },
-      '&:hover fieldset': {
-        border: '1px solid #c8d0d4',
-      },
-      '&.Mui-focused fieldset': {
-        border: '1px solid #c8d0d4',
-      },
-    },
-  },
+
   btn: {
     py: '0.8rem',
     mt: 2,

@@ -1,31 +1,54 @@
+import { Wrapper } from '../../UserProfile/styles';
 export const styles = {
-  formInput: {
-    '& label.Mui-focused': {
-      color: '#9A9A9A',
-      fontWeight: 400,
-    },
-    '& .MuiInputBase-input': {
-      borderColor: '#c8d0d4',
-    },
-    '& .MuiInput-underline:after': {
-      border: 'none',
-    },
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-error': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#d32f2f',
-        },
-      },
-      '& fieldset': {
-        borderColor: '#c8d0d4',
-        borderRadius: 0,
-      },
-      '&:hover fieldset': {
-        border: '1px solid #c8d0d4',
-      },
-      '&.Mui-focused fieldset': {
-        border: '1px solid #c8d0d4',
-      },
+  wrapper: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    mt: '3rem',
+  },
+  subWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    margin: 'auto',
+  },
+  papier: {
+    boxShadow: { sm: '0 0 5px #ddd' },
+    pt: '4rem',
+    px: '1rem',
+  },
+  title: {
+    textAlign: 'center',
+    width: '100%',
+    mb: '',
+    pb: { sm: '2rem' },
+  },
+  containerForm: {
+    justifyContent: 'space-between',
+    maxWidth: { sm: '18rem' },
+    marginInline: 'auto',
+  },
+  formBox: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  loadingButton: {
+    py: '0.8rem',
+    mt: 2,
+    width: '80%',
+    marginInline: 'auto',
+  },
+  errorText: {
+    marginTop: '1rem',
+  },
+  linkSignIn: {
+    textDecoration: 'none',
+    color: '#3683dc',
+    '&:hover': {
+      textDecoration: 'underline',
+      color: '#5ea1b6',
     },
   },
 };

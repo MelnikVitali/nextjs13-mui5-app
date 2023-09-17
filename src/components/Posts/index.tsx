@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
 import ScrollToTop from 'react-scroll-to-top';
+import { styles } from './styles';
 
 const firstIndex = 0;
 
@@ -74,29 +75,14 @@ const Posts = () => {
             {blogs &&
               blogs.map((post: any, index: number) => (
                 <Grid item lg={6} key={index} width={'100%'}>
-                  <Box
-                    sx={{
-                      p: 4,
-                      border: 1,
-                      borderColor: 'grey.200',
-                      borderRadius: 1,
-                      boxShadow: 1,
-                    }}
-                  >
+                  <Box sx={styles.boxPostTitle}>
                     <Typography variant='h6' component='h2' mb={2} sx={{ fontWeight: 'bold' }}>
                       {post.title}
                     </Typography>
                     <Typography variant='body2' color='text.secondary' mb={5}>
                       {post.body ? shortText(post.body) : '...'}
                     </Typography>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        flexWrap: 'wrap',
-                      }}
-                    >
+                    <Box sx={styles.boxAvatar}>
                       <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                         <Avatar
                           {...stringAvatar(

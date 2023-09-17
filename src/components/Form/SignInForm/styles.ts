@@ -1,31 +1,66 @@
 export const styles = {
-  formInput: {
-    '& label.Mui-focused': {
-      color: '#9A9A9A',
+  wrapper: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    mt: '3rem',
+  },
+  wrapperForm: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    margin: 'auto',
+  },
+  formContainer: {
+    boxShadow: { sm: '0 0 5px #ddd' },
+    py: '8rem',
+    px: '1rem',
+  },
+  formBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingRight: { sm: '3rem' },
+  },
+  signInFormContainer: {
+    justifyContent: 'space-between',
+    maxWidth: { sm: '45rem' },
+    marginInline: 'auto',
+  },
+  isTrustDeviceController: {
+    '& .MuiFormControlLabel-label': {
+      fontSize: '0.8rem',
       fontWeight: 400,
+      color: '#666666',
     },
-    '& .MuiInputBase-input': {
-      borderColor: '#c8d0d4',
+  },
+  isTrustDeviceCheckbox: { pl: '10px' },
+  loadingButton: {
+    py: '0.8rem',
+    mt: 2,
+    width: '80%',
+    marginInline: 'auto',
+  },
+  withAnotherProvider: {
+    paddingLeft: { sm: '3rem' },
+    mb: '2.2rem',
+    textAlign: 'center',
+  },
+  signupLink: {
+    textDecoration: 'none',
+    color: '#3683dc',
+    '&:hover': {
+      textDecoration: 'underline',
+      color: '#5ea1b6',
     },
-    '& .MuiInput-underline:after': {
-      border: 'none',
-    },
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-error': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#d32f2f',
-        },
-      },
-      '& fieldset': {
-        borderColor: '#c8d0d4',
-        borderRadius: 0,
-      },
-      '&:hover fieldset': {
-        border: '1px solid #c8d0d4',
-      },
-      '&.Mui-focused fieldset': {
-        border: '1px solid #c8d0d4',
-      },
+  },
+  forgotLink: {
+    textDecoration: 'none',
+    color: '#3683dc',
+    '&:hover': {
+      textDecoration: 'underline',
+      color: '#5ea1b6',
     },
   },
 };

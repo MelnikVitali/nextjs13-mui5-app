@@ -33,7 +33,6 @@ const SocialLoginButtons = () => {
         <Image
           src={googleImage}
           alt='Google Logo'
-          // className='dark:invert'
           width={32}
           height={32}
           style={{ height: '2rem' }}
