@@ -10,14 +10,24 @@ export async function POST(req: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await connectToMongoDB();
+
+    const userExists = await User.findOne({ email }).select('_id');
+
+    if (userExists) {
+      throw new Error('The user with this email address is already registered');
+    }
+
     const user: IUser = { name, email, password: hashedPassword, isTrustDevice };
     await User.create(user);
 
     return NextResponse.json({ message: 'User successfully registered.' }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { message: 'An error occurred while registering the user.' },
-      { status: 500 },
+      {
+        message:
+          ((error as Error)?.message as string) || 'An error occurred while registering the user.',
+      },
+      { status: 400 },
     );
   }
 }

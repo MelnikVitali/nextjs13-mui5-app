@@ -11,5 +11,6 @@ export const POST = async (req: Request) => {
     return NextResponse.json({ user });
   } catch (error) {
     console.log(error);
+    return NextResponse.json({ message: 'User Not found' }, { status: 204 });
   }
 };
