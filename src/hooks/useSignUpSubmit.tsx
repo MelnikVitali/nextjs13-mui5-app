@@ -34,7 +34,7 @@ export const useSignUpSubmit = (): [
       const { user } = await resUserExists.json();
       if (user) {
         setLoading(false);
-        setError('User already exists.');
+        setError('The user with this email address is already registered.');
         return;
       }
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signup`, {
