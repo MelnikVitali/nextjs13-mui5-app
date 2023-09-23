@@ -1,23 +1,12 @@
 'use client';
-import { useState, FC } from 'react';
-import {
-  Container,
-  Grid,
-  Box,
-  Typography,
-  Stack,
-  Link as MuiLink,
-  TextField,
-  Alert,
-} from '@mui/material';
+import { FC } from 'react';
+import { Container, Grid, Box, Typography, Stack, Link as MuiLink, Alert } from '@mui/material';
 import Link from 'next/link';
-import { useForm, SubmitHandler, Controller, set } from 'react-hook-form';
-import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { styles } from './styles';
 
-import { usePathname, useRouter } from 'next/navigation';
 import TextInput from '../FormInputs/TextInput';
 import { forgotPaSwordSchema } from '@/utils/yupSchemas';
 import { useForgotPasswordSubmit } from '@/hooks/useForgotPasswordSubmit';
