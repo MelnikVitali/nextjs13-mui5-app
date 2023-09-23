@@ -12,10 +12,10 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (!localStorage.getItem('theme')) {
-        window.localStorage.setItem('theme', 'light');
+      if (!localStorage.getItem('blog-theme')) {
+        window.localStorage.setItem('blog-theme', 'light');
       } else {
-        setMode(localStorage.getItem('theme') as 'light' | 'dark');
+        setMode(localStorage.getItem('blog-theme') as 'light' | 'dark');
       }
       setMounted(true);
     }
@@ -24,7 +24,7 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        window.localStorage.setItem('theme', mode === 'light' ? 'dark' : 'light');
+        window.localStorage.setItem('blog-theme', mode === 'light' ? 'dark' : 'light');
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
