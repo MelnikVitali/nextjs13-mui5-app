@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "(open http://localhost:3000 || cmd.exe /c start http://localhost:3000) && next dev",
+    "dev": "(wsl-open http://localhost:3000) && next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

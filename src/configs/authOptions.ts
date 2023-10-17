@@ -15,6 +15,7 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET!,
     }),
     //https://github.com/settings/developers
+    //http://localhost:3000/api/auth/callback/github
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,

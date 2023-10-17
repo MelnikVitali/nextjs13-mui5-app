@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Locale, i18n } from '@/i18n.config';
+import { Locale, i18n } from '@/configs/i18n.config';
 import { Roboto } from 'next/font/google';
 import ThemeRegistry from '@/ThemeRegistry/ThemeRegistry';
 import { Container } from '@mui/material';

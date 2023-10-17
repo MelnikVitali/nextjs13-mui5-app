@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { i18n } from '@/i18n.config';
+import { i18n } from '@/configs/i18n.config';
 
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
@@ -38,3 +38,6 @@ export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
+
+// export { default } from 'next-auth/middleware';
+// export const config = { matcher: ['/profile', 'blog', '/protected/:path*'] };

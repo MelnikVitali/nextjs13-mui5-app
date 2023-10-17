@@ -1,6 +1,6 @@
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { Box, Card, Grid, Typography } from '@mui/material';
-import { Locale } from '@/i18n.config';
+import { Locale } from '@/configs/i18n.config';
 import { getDictionary } from '@/lib/dictionary';
 import { IDictionary } from '@/types/Dictionary';
 import Link from 'next/link';

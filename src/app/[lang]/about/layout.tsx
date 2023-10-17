@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Link as MuiLink } from '@mui/material';
 import { FC } from 'react';
 import { usePathname } from 'next/navigation';
-import { Locale } from '@/i18n.config';
+import { Locale } from '@/configs/i18n.config';
 
 interface Props {
   children: React.ReactNode;
